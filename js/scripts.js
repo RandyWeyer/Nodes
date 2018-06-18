@@ -2,7 +2,7 @@ $(document).ready(function(){
   var canvas = document.getElementById('canvas');
 
   canvas.width = window.innerWidth;
-  canvas.height = 500;
+  canvas.height = window.innerHeight;
 
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
@@ -86,6 +86,9 @@ grid();
   });
 
   ball.draw();
+
+
+
 
 
 });

@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
   var canvas = document.getElementById('canvas');
 
@@ -9,7 +10,7 @@ $(document).ready(function(){
   var raf;
   var running = false;
   var dragging = false;
-  
+
   var ball = {
     x: 100,
     y: 100,
@@ -68,3 +69,5 @@ $(document).ready(function(){
 
 
 });
+
+*/

@@ -1,0 +1,5 @@
+$(function()
+{
+  $( ".drag" ).draggable();
+
+});

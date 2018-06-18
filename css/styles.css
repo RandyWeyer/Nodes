@@ -1,8 +1,27 @@
 body {
   margin: 0;
-  background-color: gray;
+  background-color: grey;
   overflow: hidden;
 }
 canvas {
 
+}
+
+#draggable {
+  width: 150px;
+  height: 150px;
+  padding: 0.5em;
+  border-style: solid;
+}
+
+.drag {
+  width: 150px;
+  height: 150px;
+  padding: 0.5em;
+  border-style: solid;
+}
+
+.card-style
+{
+  background-color: white;
 }

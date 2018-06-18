@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: ivory;
+  background-color: grey;
   padding: 0;
 }
 /*canvas {
@@ -29,7 +29,7 @@ body {
 
 #canvas{
   position:absolute;
-  border:1px solid red;
+  border:1px solid black;
   width:100%;height:100%;
 }
 .draggable  {

@@ -9,9 +9,10 @@ $(function()
   for (var i = 0; i < clickIds.length; i++)
   {
     clickIds[i].addEventListener('dblclick', getID,false);
+    //clickIds[i].addEventListener('dblclick', getID,false);
   }
 
-  newCanvas = new Canvas(document.getElementById("canvas"));
+  newCanvas = new Canvas("canvas");
   connectObjects();
 
   $(".click-id").dblclick(function()
@@ -21,51 +22,41 @@ $(function()
   });
 });
 
-function Canvas(canvasName)
+function Canvas(canvasID)
 {
-  this.canvas = canvasName;
+  this.canvas = document.getElementById("canvas");
+  this.offset = $("#"+canvasID).offset();
   this.ctx = canvas.getContext("2d");
-  console.log(this.ctx);
-
   this.canvas.width = window.innerWidth;
   this.canvas.height = window.innerHeight;
   this.ctx.lineWidth = 3;
-
   this.connectors = [];
 }
 
 Canvas.prototype.push = function(id1,id2)
 {
-  // this.connectors.push({from:id1,to:id2});
   this.connectors.push([id1,id2]);
 }
 
 function connectObjects()
 {
-  // newCanvas.push($("#0"),$("#0r"));
-  // newCanvas.push($("#1"),$("#0r"));
-  // newCanvas.push($("#2"),$("#2r"));
-  newCanvas.push("#0","#0r");
-  newCanvas.push("#1","#0r");
-  newCanvas.push("#2","#2r");
-
   connect();
-
   $(".draggable").draggable({
     // event handlers
     start: noop,
     drag:  connect,
     stop:  noop
   });
-
-
 }
 
 function noop(){}
 
 function connect(){
   newCanvas.ctx.clearRect(0,0,newCanvas.canvas.width,newCanvas.canvas.height);
-  console.log(newCanvas.connectors[0]);
+  //console.log(newCanvas.connectors[0]);
+  console.log(newCanvas.offset.top);
+  var topOffset = newCanvas.offset.top;
+  var leftOffset = newCanvas.offset.left;
   //newCanvas.ctx.translate(0,-60);
   for(var i=0;i<newCanvas.connectors.length;i++)
   {
@@ -79,9 +70,10 @@ function connect(){
     var pos2=eTo.offset();
     newCanvas.ctx.beginPath();
     //moveTo creates a point on cavas
-    newCanvas.ctx.moveTo(pos1.left,pos1.top+16);
+    newCanvas.ctx.moveTo(pos1.left+16-leftOffset,pos1.top+16-topOffset);
     //creates a line to the new point
-    newCanvas.ctx.lineTo(pos2.left,pos2.top+16);
+    newCanvas.ctx.lineTo(pos2.left+16-leftOffset,pos2.top+16-topOffset);
+    //console.log(newCanvas.connectors[0])
     //creates the line
     newCanvas.ctx.stroke();
   }

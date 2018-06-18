@@ -3,21 +3,20 @@
 <head>
   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
   <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
   <script src="js/jquery-3.3.1.js"></script>
   <script src="js/bootstrap.js"></script>
-  <script src="js/FileSaver.js"></script>
   <script src="js/scripts.js"></script>
+  <script src="js/drag.js"></script>
+  <script src="js/FileSaver.js"></script>
   <script src="js/saveProject.js"></script>
   <title>Nodes</title>
 </head>
-<body>
-  <div id="node-project">
-
-    <!-- Canvas for story board -->
-    <canvas id="canvas"></canvas>
-
-</div>
-
+<body class="container-fluid">
+  <div class="">
+    <button id="btn-submit" class="btn btn-primary"type="submit" name="button">Submit</button>
+  </div>
+  
   <!-- Button to Open the Modal -->
   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Save</button>
 
@@ -48,5 +47,19 @@
     </div>
   </div>
 <!-- End of Modal -->
+
+  <div id="node-project">
+      <canvas id="canvas" width=300px height=300px></canvas>
+      <div>
+        <div id="0" class="draggable">0</div>
+        <div id="1" class="draggable">1</div>
+        <div id="2" class="draggable">2</div>
+      </div>
+      <div id="wrap2">
+        <div id="0r" class="draggable right">0</div>
+        <div id="1r" class="draggable right">1</div>
+        <div id="2r" class="draggable right">2</div>
+      </div>
+  </div>
 </body>
 </html>

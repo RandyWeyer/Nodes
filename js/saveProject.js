@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
   $("#save-project").click(function(event) {
     event.preventDefault();

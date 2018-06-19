@@ -11,22 +11,6 @@ $(document).ready(function(){
   var running = false;
   var dragging = false;
 
-  var ball = {
-    x: 100,
-    y: 100,
-    vx: 5,
-    vy: 1,
-    radius: 25,
-    color: 'blue',
-    draw: function() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-      ctx.closePath();
-      ctx.fillStyle = this.color;
-      ctx.fill();
-    }
-  };
-
   function grid() {
     var w = canvas.width,
         h = canvas.height;
@@ -58,35 +42,32 @@ grid();
 
   function draw() {
     clear();
-    ball.draw();
+    //ball.draw();
 
     raf = window.requestAnimationFrame(draw);
   }
 
-  canvas.addEventListener('mousedown', function(e) {
-    if (!dragging) {
-      raf = window.requestAnimationFrame(draw);
-      dragging = true;
-    }
+  // canvas.addEventListener('mousedown', function(e) {
+  //   if (!dragging) {
+  //     raf = window.requestAnimationFrame(draw);
+  //     dragging = true;
+  //   }
+  // });
+  //
+  // canvas.addEventListener('mousemove', function(e) {
+  //   if (dragging) {
+  //     clear();
+  //   }
+  // });
+  //
+  // canvas.addEventListener('mouseup', function(e) {
+  //   if (dragging) {
+  //     raf = window.requestAnimationFrame(draw);
+  //     dragging = false;
+  //   }
   });
 
-  canvas.addEventListener('mousemove', function(e) {
-    if (dragging) {
-      clear();
-      ball.x = e.clientX-canvas.getBoundingClientRect().left;
-      ball.y = e.clientY-canvas.getBoundingClientRect().top;
-      ball.draw();
-    }
-  });
-
-  canvas.addEventListener('mouseup', function(e) {
-    if (dragging) {
-      raf = window.requestAnimationFrame(draw);
-      dragging = false;
-    }
-  });
-
-  ball.draw();
+  //ball.draw();
 
 
 

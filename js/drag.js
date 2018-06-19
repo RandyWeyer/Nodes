@@ -2,12 +2,29 @@
 var newCanvas;
 var lineId = [];
 var selectedObjects = [];
+var uniqueId = 0;
 
 $(function()
 {
   $(".draggable").dblclick(function()
   {
     addId(this);
+  });
+
+  $("#add-card").click(function()
+  {
+    //create an element
+    var element = $('<div id="'+uniqueId+'" class="draggable"></div>').text('test');
+    uniqueId++;
+    //append it to the DOM
+    $("#input-card").append(element);
+    //make it "draggable"
+    element.draggable({
+      // event handlers
+      start: noop,
+      drag:  connect,
+      stop:  noop
+    }).dblclick(function(){addId(this);});
   });
 
   newCanvas = new Canvas("canvas");

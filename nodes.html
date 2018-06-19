@@ -13,15 +13,17 @@
   <title>Nodes</title>
 </head>
 <body class="container-fluid">
-  <div class="">
-    <button id="btn-submit" class="btn btn-primary"type="submit" name="button">Submit</button>
+  <div class="toolbar">
+    <!-- Button to Open the Load Modal  -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
+
+    <!-- Button to Open the Save Modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
   </div>
 
-  <!-- Button to Open the Modal -->
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Save</button>
 
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
+  <!-- The Save Modal -->
+  <div class="modal" id="myModalSave">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -40,13 +42,41 @@
         <!-- Modal footer -->
         <div class="modal-footer">
             <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
-          <button type="button" class="btn btn-danger">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
 
       </div>
     </div>
   </div>
-<!-- End of Modal -->
+<!-- End of Save Modal -->
+
+<!-- The Load Modal -->
+<div class="modal" id="myModalLoad">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Load Project</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Select a file from your computer:
+        <input type="file" id="loadProjectFileName">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- End of Load Modal -->
 
   <div id="node-project">
       <canvas id="canvas" width=300px height=300px></canvas>

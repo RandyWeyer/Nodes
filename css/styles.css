@@ -50,3 +50,14 @@ body {
 #wrap2  {
   margin-top:-95px;
 }
+
+/*card editor*/
+.card {
+  border: solid black 1pt;
+
+}
+
+.card-body {
+  display: none;
+}
+/*card editor*/

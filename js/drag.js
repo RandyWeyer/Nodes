@@ -107,14 +107,18 @@ function addId(tempId)
 {
   lineId.push(tempId);
 
-    if(!$(tempId).hasClass("card-selected"))
-    {
-      $(tempId).addClass("card-selected");
-    }
+  if($(tempId).hasClass("card-selected"))
+  {
+    $(tempId).removeClass("card-selected");
+  }
+  else
+  {
+    $(tempId).addClass("card-selected");
+  }
 
   if(lineId.length > 1)
   {
-    console.log(lineId);
+    //console.log(lineId);
     var reverseArr = lineId.slice();
     reverseArr.reverse();
     if(newCanvas.indexOf(lineId)!=-1)
@@ -131,14 +135,11 @@ function addId(tempId)
     {
       console.log("Test Three");
       newCanvas.push(lineId[0],lineId[1]);
-    }
-    else
-    {
-      console.log("Test Four: "+$(tempId).hasClass("card-selected"));
-
-        $(tempId).removeClass("card-selected");
 
     }
+    lineId.forEach(function(line){
+      $(line).removeClass("card-selected");
+    });
 
     lineId = [];
     connect();

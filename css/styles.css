@@ -25,3 +25,22 @@ body {
 .card-selected  {
   box-shadow: 0px 0px 20px lightgreen;
 }
+
+/*card editor*/
+.card {
+  padding: 15px;
+  border: solid #EEE 3px;
+  border-radius: 8px;
+  background-color: #AAA;
+}
+textarea {
+  max-width: 15em;
+}
+#cardTitle {
+  max-width: 15em;
+}
+
+.card-body {
+  display: none;
+}
+/*card editor*/

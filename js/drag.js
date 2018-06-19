@@ -1,25 +1,35 @@
 //https://stackoverflow.com/questions/21864989/draw-lines-between-2-elements-in-html-page
 var newCanvas;
 var lineId = [];
+var selectedObjects = [];
+var uniqueId = 0;
 
 $(function()
 {
-  var clickIds = document.getElementsByClassName("draggable");
-
-  for (var i = 0; i < clickIds.length; i++)
+  $(".draggable").dblclick(function()
   {
-    clickIds[i].addEventListener('dblclick', getID,false);
-    //clickIds[i].addEventListener('dblclick', getID,false);
-  }
+    addId(this);
+  });
+
+  $("#add-card").click(function()
+  {
+    //create an element
+    var element = $('<div id="'+uniqueId+'" class="draggable"></div>').text('test');
+    uniqueId++;
+    //append it to the DOM
+    $("#input-card").append(element);
+    //make it "draggable"
+    element.draggable({
+      // event handlers
+      start: noop,
+      drag:  connect,
+      stop:  noop
+    }).dblclick(function(){addId(this);});
+  });
 
   newCanvas = new Canvas("canvas");
   connectObjects();
 
-  $(".click-id").dblclick(function()
-  {
-    //console.log($("#0").offset());
-
-  });
 });
 
 function Canvas(canvasID)
@@ -38,6 +48,36 @@ Canvas.prototype.push = function(id1,id2)
   this.connectors.push([id1,id2]);
 }
 
+Canvas.prototype.indexOf = function(idArr)
+{
+  var counter = 0;
+  var location = -1;
+
+  this.connectors.forEach(function(connector){
+    if(connector[0]===idArr[0]&&connector[1]===idArr[1])
+    {
+      location = counter;
+    }
+    counter++;
+  });
+  return (location);
+}
+
+Canvas.prototype.removeAt = function(location)
+{
+  if(this.connectors.length === 1)
+  {
+    this.connectors.pop();
+  }
+  else if (location === 0) {
+    this.connectors.shift();
+  }
+  else
+  {
+    this.connectors.splice(location,location);
+  }
+}
+
 function connectObjects()
 {
   connect();
@@ -54,7 +94,7 @@ function noop(){}
 function connect(){
   newCanvas.ctx.clearRect(0,0,newCanvas.canvas.width,newCanvas.canvas.height);
   //console.log(newCanvas.connectors[0]);
-  console.log(newCanvas.offset.top);
+  //console.log(newCanvas.offset.top);
   var topOffset = newCanvas.offset.top;
   var leftOffset = newCanvas.offset.left;
   //newCanvas.ctx.translate(0,-60);
@@ -80,18 +120,45 @@ function connect(){
   //console.log(newCanvas.connectors[0])
 }
 
-function getID(event)
+function addId(tempId)
 {
-  lineId.push("#"+event.target.id)
-  console.log(event.target.id);
-  console.log(lineId);
+  lineId.push(tempId);
+
+  if($(tempId).hasClass("card-selected"))
+  {
+    $(tempId).removeClass("card-selected");
+  }
+  else
+  {
+    $(tempId).addClass("card-selected");
+  }
+
   if(lineId.length > 1)
   {
-    if(lineId[0]!=lineId[1])
+    //console.log(lineId);
+    var reverseArr = lineId.slice();
+    reverseArr.reverse();
+    if(newCanvas.indexOf(lineId)!=-1)
     {
-      newCanvas.push(lineId[0],lineId[1])
-      connect();
+      console.log("Test One");
+      newCanvas.removeAt(newCanvas.indexOf(lineId));
     }
+    else if(newCanvas.indexOf(reverseArr)!=-1)
+    {
+      console.log("Test Two");
+      newCanvas.removeAt(newCanvas.indexOf(reverseArr));
+    }
+    else if(lineId[0]!=lineId[1])
+    {
+      console.log("Test Three");
+      newCanvas.push(lineId[0],lineId[1]);
+
+    }
+    lineId.forEach(function(line){
+      $(line).removeClass("card-selected");
+    });
+
     lineId = [];
+    connect();
   }
 }

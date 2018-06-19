@@ -53,8 +53,16 @@ body {
 
 /*card editor*/
 .card {
-  border: solid black 1pt;
-
+  padding: 15px;
+  border: solid #EEE 3px;
+  border-radius: 8px;
+  background-color: #AAA;
+}
+textarea {
+  max-width: 15em;
+}
+#cardTitle {
+  max-width: 15em;
 }
 
 .card-body {

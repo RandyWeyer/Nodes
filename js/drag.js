@@ -1,17 +1,12 @@
 //https://stackoverflow.com/questions/21864989/draw-lines-between-2-elements-in-html-page
 var newCanvas;
 var lineId = [];
+var selectedObjects = [];
 
 $(function()
 {
-  var clickIds = document.getElementsByClassName("draggable");
-
-  $(".draggable").click(function(){
-    $(this).toggleClass("card-selected");
-  });
-
-
-  $(".draggable").dblclick(function(){
+  $(".draggable").dblclick(function()
+  {
     addId(this);
   });
 
@@ -108,55 +103,44 @@ function connect(){
   //console.log(newCanvas.connectors[0])
 }
 
-function getID(event)
-{
-  lineId.push("#"+event.target.id)
-  if(lineId.length > 1)
-  {
-    var reverseArr = lineId.slice();
-    reverseArr.reverse();
-    if(newCanvas.indexOf(lineId)!=-1)
-    {
-      newCanvas.removeAt(newCanvas.indexOf(lineId));
-    }
-    else if(newCanvas.indexOf(reverseArr)!=-1)
-    {
-      newCanvas.removeAt(newCanvas.indexOf(reverseArr));
-    }
-    else if(lineId[0]!=lineId[1])
-    {
-      newCanvas.push(lineId[0],lineId[1]);
-    }
-    lineId = [];
-    connect();
-  }
-}
-
 function addId(tempId)
 {
   lineId.push(tempId);
+
+    if(!$(tempId).hasClass("card-selected"))
+    {
+      $(tempId).addClass("card-selected");
+    }
+
   if(lineId.length > 1)
   {
+    console.log(lineId);
     var reverseArr = lineId.slice();
     reverseArr.reverse();
     if(newCanvas.indexOf(lineId)!=-1)
     {
+      console.log("Test One");
       newCanvas.removeAt(newCanvas.indexOf(lineId));
     }
     else if(newCanvas.indexOf(reverseArr)!=-1)
     {
+      console.log("Test Two");
       newCanvas.removeAt(newCanvas.indexOf(reverseArr));
     }
     else if(lineId[0]!=lineId[1])
     {
+      console.log("Test Three");
       newCanvas.push(lineId[0],lineId[1]);
     }
+    else
+    {
+      console.log("Test Four: "+$(tempId).hasClass("card-selected"));
+
+        $(tempId).removeClass("card-selected");
+
+    }
+
     lineId = [];
     connect();
   }
-}
-
-function select(event)
-{
-  $("#"+event.target.id).toggleClass("card-selected");
 }

@@ -6,18 +6,18 @@ $(function()
 {
   var clickIds = document.getElementsByClassName("draggable");
 
-  for (var i = 0; i < clickIds.length; i++)
-  {
-    clickIds[i].addEventListener('dblclick', getID,false);
-    //clickIds[i].addEventListener('dblclick', getID,false);
-  }
+  $(".draggable").click(function(){
+    $(this).toggleClass("card-selected");
+  });
+
+
+  $(".draggable").dblclick(function(){
+    addId(this);
+  });
 
   newCanvas = new Canvas("canvas");
   connectObjects();
-  $(".click-id").dblclick(function()
-  {
-    //console.log($("#0").offset());
-  });
+
 });
 
 function Canvas(canvasID)
@@ -48,14 +48,22 @@ Canvas.prototype.indexOf = function(idArr)
     }
     counter++;
   });
-
-  console.log("Counter: "+location);
   return (location);
 }
 
 Canvas.prototype.removeAt = function(location)
 {
-  this.connectors.splice(0,location);
+  if(this.connectors.length === 1)
+  {
+    this.connectors.pop();
+  }
+  else if (location === 0) {
+    this.connectors.shift();
+  }
+  else
+  {
+    this.connectors.splice(location,location);
+  }
 }
 
 function connectObjects()
@@ -103,25 +111,52 @@ function connect(){
 function getID(event)
 {
   lineId.push("#"+event.target.id)
-  console.log(event.target.id);
-  // console.log(lineId);
   if(lineId.length > 1)
   {
     var reverseArr = lineId.slice();
     reverseArr.reverse();
     if(newCanvas.indexOf(lineId)!=-1)
     {
-      console.log("Test 1: "+newCanvas.indexOf(lineId).toString())
+      newCanvas.removeAt(newCanvas.indexOf(lineId));
     }
     else if(newCanvas.indexOf(reverseArr)!=-1)
     {
-      console.log("Test 2: "+newCanvas.indexOf(reverseArr).toString());
+      newCanvas.removeAt(newCanvas.indexOf(reverseArr));
     }
     else if(lineId[0]!=lineId[1])
     {
-      newCanvas.push(lineId[0],lineId[1])
-      connect();
+      newCanvas.push(lineId[0],lineId[1]);
     }
     lineId = [];
+    connect();
   }
+}
+
+function addId(tempId)
+{
+  lineId.push(tempId);
+  if(lineId.length > 1)
+  {
+    var reverseArr = lineId.slice();
+    reverseArr.reverse();
+    if(newCanvas.indexOf(lineId)!=-1)
+    {
+      newCanvas.removeAt(newCanvas.indexOf(lineId));
+    }
+    else if(newCanvas.indexOf(reverseArr)!=-1)
+    {
+      newCanvas.removeAt(newCanvas.indexOf(reverseArr));
+    }
+    else if(lineId[0]!=lineId[1])
+    {
+      newCanvas.push(lineId[0],lineId[1]);
+    }
+    lineId = [];
+    connect();
+  }
+}
+
+function select(event)
+{
+  $("#"+event.target.id).toggleClass("card-selected");
 }

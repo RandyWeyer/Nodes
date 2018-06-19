@@ -16,6 +16,7 @@ body {
   height:30px;
   background:azure;
   border:1px solid black;
+  z-index: 1 ;
 }
 
 .right  {

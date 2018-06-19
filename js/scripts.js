@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   var canvas = document.getElementById('canvas');
 
   canvas.width = window.innerWidth;
@@ -41,35 +41,7 @@ grid();
 
   function draw() {
     clear();
-    //ball.draw();
-
     raf = window.requestAnimationFrame(draw);
   }
-
-  // canvas.addEventListener('mousedown', function(e) {
-  //   if (!dragging) {
-  //     raf = window.requestAnimationFrame(draw);
-  //     dragging = true;
-  //   }
-  // });
-  //
-  // canvas.addEventListener('mousemove', function(e) {
-  //   if (dragging) {
-  //     clear();
-  //   }
-  // });
-  //
-  // canvas.addEventListener('mouseup', function(e) {
-  //   if (dragging) {
-  //     raf = window.requestAnimationFrame(draw);
-  //     dragging = false;
-  //   }
-  });
-
-  //ball.draw();
-
-
-
-
 
 });

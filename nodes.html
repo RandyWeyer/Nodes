@@ -10,35 +10,19 @@
   <script src="js/drag.js"></script>
   <script src="js/FileSaver.js"></script>
   <script src="js/saveProject.js"></script>
-  <script src="js/edit-card.js"></script>
+  <!-- <script src="js/edit-card.js"></script> -->
 
   <title>Nodes</title>
 </head>
 <body class="container-fluid">
-  //Edit Card
-
-
-</div>
-
-
-
-
-  <span class="btn btn-primary" id="addCard">+Card</span>
-
-
-
-  <div class="">
-    <button id="btn-submit" class="btn btn-primary"type="submit" name="button">Submit</button>
-    //End Edit Card
-
-    //Master
+  <!-- //Master -->
   <div class="toolbar">
     <!-- Button to Open the Load Modal  -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
 
     <!-- Button to Open the Save Modal -->
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
-//End Master
+    <!-- //End Master -->
   </div>
 
 
@@ -61,141 +45,70 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
 
       </div>
     </div>
   </div>
-<!-- End of Save Modal -->
+  <!-- End of Save Modal -->
 
-<!-- The Load Modal -->
-<div class="modal" id="myModalLoad">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  <!-- The Load Modal -->
+  <div class="modal" id="myModalLoad">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Load Project</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Load Project</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        Select a file from your computer:
-        <input type="file" id="loadProjectFileName">
-      </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          Select a file from your computer:
+          <input type="file" id="loadProjectFileName">
+        </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
+        <!-- Modal footer -->
+        <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
       </div>
+    </div>
+  </div>
+  <!-- End of Load Modal -->
+
+  <!-- <canvas id="canvas" width=300px height=300px></canvas> -->
+  <div class="">
+    <button class="btn btn-primary" id="addCard">Add Card</button>
+  </div>
+
+  <!-- <div class="">
+    <button id="btn-submit" class="btn btn-primary"type="submit" name="button">Submit</button>
+  </div> -->
+  <div class="">
+    <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Test</button>
+  </div>
+
+  <div id="node-project">
+
+    <canvas id="canvas" width=300px height=300px></canvas>
+    <div>
+      <span class = "insertDiv"></span>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text </p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+
+    <div id="input-card">
 
     </div>
   </div>
-</div>
-<!-- End of Load Modal -->
-
-  <div id="node-project">
-    //Start Edit Card
-
-
-
-      <canvas id="canvas" width=300px height=300px></canvas>
-      <div>
-        <span class = "insertDiv"></span>
-
-        <div id="0" class="draggable">0</div>
-        <div id="1" class="draggable">1</div>
-        <div id="2" class="draggable">2</div>
-
-
-      </div>
-      <div id="wrap2">
-        <div id="0r" class="draggable right">0</div>
-        <div id="1r" class="draggable right">1</div>
-
-
-        <!-- test -->
-        <div id="2r" class="draggable right">2
-          <!-- <div class="card" style="width: 18rem;">
-            <form id="editForm">
-              <div class="form-group">
-                <label for="cardTitle">Title</label>
-                <input type="text" class="form-control" id="cardTitle">
-              </div>
-              <div class="form-group">
-                <label for="cardNote">Note:</label>
-                <input type="text" class="form-control" id="cardNote">
-              </div>
-              <span class="btn btn-primary" id="saveCard">Save</span>
-            </form>
-
-
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text </p>
-              <span class="btn btn-primary" id="editCard">Edit</span>
-            </div>
-          </div> -->
-
-        </div>
-
-        <!-- test -->
-      </div>
-
-<!-- card editor -->
-
-
-
-
-
-
-
-
-
-
-      <!-- <div class="card" style="width: 18rem;">
-        <form id="editCard">
-          <div class="form-group">
-            <label for="cardTitle">Title</label>
-            <input type="text" class="form-control" id="cardTitle">
-          </div>
-          <div class="form-group">
-            <label for="cardNote">Note:</label>
-            <input type="text" class="form-control" id="cardNote">
-          </div>
-          <span class="btn btn-primary" id="saveCard">Save</span>
-        </form>
-
-
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div> -->
-<!-- card editor -->
-    //end Card Editor
-//Start Master
-    <div class="">
-      <button id="add-card"class="btn btn-primary"type="submit" name="button">Add</button>
-    </div>    
-      <canvas id="canvas" width=300px height=300px></canvas>
-      <div id="input-card">
-        <div id="0t" class="draggable">0</div>
-        <div id="1t" class="draggable">1</div>
-        <div id="2t" class="draggable">2</div>
-        <div id="0r" class="draggable">0</div>
-        <div id="1r" class="draggable">1</div>
-        <div id="2r" class="draggable">2</div>
-      </div>
-//end Master
-
-  </div>
-
-
 </body>
 </html>

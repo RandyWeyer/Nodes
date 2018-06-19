@@ -3,6 +3,7 @@ var newCanvas;
 var lineId = [];
 var selectedObjects = [];
 var uniqueId = 0;
+var globalId = 3;
 
 $(function()
 {
@@ -27,10 +28,71 @@ $(function()
     }).dblclick(function(){addId(this);});
   });
 
+  $("#addCard").click(function()
+  {
+    // <span class = "test"></span>
+
+    var element = $('<div id="'+uniqueId+'" class="draggable"></div>');
+    uniqueId++;
+
+    element.html(
+      '<div class="card" style="width: 18em;">'+
+      // '<form id="editForm">'+
+      '<div class = form>'+
+      '<div class="form-group">'+
+      '<label for="cardTitle">Title</label>'+
+      '<input type="text" class="form-control" id="cardTitle">'+
+      '</div>'+
+      '<div class="form-group">'+
+      '<label for="cardNote">Note:</label>'+
+
+      '<textarea type="text" lines="8" class="form-control" id="cardNote"></textarea>'+
+      '</div>'+
+      '<button class="btn btn-primary save-card">Save</button>'+
+      '</div>'+
+      // '</form>'+
+      '<div class="card-body">'+
+      '<h5 class="card-title"></h5>'+
+      '<p class="card-text"></p>'+
+      '<button class="btn btn-primary edit-card">Edit</button>'+
+      '</div>'+
+      '</div>'
+    );
+    //append it to the DOM
+    $("#input-card").append(element);
+    //make it "draggable"
+    element.draggable({
+      // event handlers
+      start: noop,
+      drag:  connect,
+      stop:  noop
+    }).dblclick(function(){addId(this);});
+  });
+
+  $(".save-card").click(function(){
+
+    console.log("test one");
+
+    // var inputtedTitle = $("input#cardTitle").val();
+    // var inputtedNote = $("textarea#cardNote").val();
+    // $(".card-title").text(inputtedTitle);
+    // $(".card-text").text(inputtedNote);
+    // $(".form").hide();
+    // $(".card-body").show();
+  });
+
+  $(".edit-card").click(function(){
+    // $(".form").show();
+    // $(".card-body").hide();
+  });
+
+
+
   newCanvas = new Canvas("canvas");
   connectObjects();
 
 });
+
 
 function Canvas(canvasID)
 {

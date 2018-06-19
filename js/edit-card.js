@@ -15,21 +15,24 @@ $(function(){
                     '</div>'+
                     // '</form>'+
                     '<div class="card-body">'+
-                    '<h5 class="card-title">Card title</h5>'+
-                    '<p class="card-text">Some quick example text </p>'+
+                    '<h5 class="card-title"></h5>'+
+                    '<p class="card-text"></p>'+
                     '<span class="btn btn-primary" id="editCard">Edit</span>'+
                     '</div>'+
-                    '</div> '
+                    '</div>'
                   );
+
+                  $("#saveCard").last().click(function(){
+
+                    var inputtedTitle = $("input#cardTitle").val();
+                    var inputtedNote = $("input#cardNote").val();
+                    $(".card-title").text(inputtedTitle);
+                    $(".card-text").text(inputtedNote);
+                    $(".form").hide();
+                    $(".card-body").show();
   })
 
-  $("#saveCard").click(function(){
-    var inputtedTitle = $("input#cardTitle").val();
-    var inputtedNote = $("input#cardNote").val();
-    $(".card-title").text(inputtedTitle);
-    $(".card-text").text(inputtedNote);
-    $(".form").hide();
-    $(".card-body").show();
+
 
   })
 

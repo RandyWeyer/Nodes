@@ -1,6 +1,6 @@
 $(function(){
   $("#addCard").click(function(){
-    $("#2r").append('<div class="card" style="width: 18rem;">'+
+    $("#2r").append('<div class="card" style="width: 18em;">'+
                     // '<form id="editForm">'+
                     '<div class = form>'+
                     '<div class="form-group">'+

@@ -22,19 +22,20 @@ $(function(){
                     '</div>'
                   );
 
-                  $("#saveCard").last().click(function(){
+    $("#saveCard").last().click(function(){
 
-                    var inputtedTitle = $("input#cardTitle").val();
-                    var inputtedNote = $("input#cardNote").val();
-                    $(".card-title").text(inputtedTitle);
-                    $(".card-text").text(inputtedNote);
-                    $(".form").hide();
-                    $(".card-body").show();
-  })
+      var inputtedTitle = $("input#cardTitle").val();
+      var inputtedNote = $("input#cardNote").val();
+      $(".card-title").text(inputtedTitle);
+      $(".card-text").text(inputtedNote);
+      $(".form").hide();
+      $(".card-body").show();
+    });
 
+    $("#editCard").click(function(){
+      $(".form").show();
+      $(".card-body").hide();
+    })
 
-
-  })
-
-
+  });
 });

@@ -30,6 +30,7 @@ const cardHtml = (
 
 $(function()
 {
+
   //Start Drag
   $(".draggable").dblclick(function()
   {
@@ -56,47 +57,13 @@ $(function()
     element.find(".edit-card").click(function(){editInfo(this);});
   });
   newCanvas = new Canvas("canvas");
-  connectObjects();
 
   $("#btn-color").click(function()
   {
     //getHexColor();
   });
+
 });
-
-function grid()
-{
-  var w = newCanvas.width;
-  var h = newCanvas.height;
-  var tempCtx = newCanvas.ctx;
-
-  /**
-  * i is used for both x and y to draw
-  * a line every 5 pixels starting at
-  * .5 to offset the canvas edges
-  */
-  for(var i = .5; i < w || i < h; i += 30) {
-    // draw horizontal lines
-    tempCtx.moveTo( i, 0 );
-    tempCtx.lineTo( i, h);
-    // draw vertical lines
-    tempCtx.moveTo( 0, i );
-    tempCtx.lineTo( w, i);
-  }
-  tempCtx.strokeStyle = 'hsla(0, 0%, 40%, .05)';
-  tempCtx.stroke();
-}
-
-function clear() {
-  newCanvas.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-  newCanvas.ctx.fillRect(0,0,canvas.width,canvas.height);
-  grid();
-}
-
-function draw() {
-  clear();
-  window.requestAnimationFrame(draw);
-}
 
 function getHexColor(){
   return $("#color-selection").val();
@@ -104,10 +71,8 @@ function getHexColor(){
 
 function resizeCanvas()
 {
-  console.log("test one");
   newCanvas.setToWindow();
   connect();
-  //draw();
 }
 
 function saveInfo(id)
@@ -130,17 +95,6 @@ function editInfo(id)
   parent.find("#input-note").val(note);
   parent.find(".card-body").hide();
   parent.find(".input-form").show();
-}
-
-function connectObjects()
-{
-  connect();
-  $(".draggable").draggable({
-    // event handlers
-    start: noop,
-    drag:  connect,
-    stop:  noop
-  });
 }
 
 function noop(){}

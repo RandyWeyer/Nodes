@@ -68,6 +68,11 @@ $(function(){
 
   });
 
+  function resizeCanvas()
+  {
+    newCanvas.setToWindow();
+  }
+
   function getHexColor(){
     return $("#color-selection").val();
   }
@@ -104,8 +109,8 @@ $(function(){
 
   Canvas.prototype.connect = function ()
   {
-    this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
-    for(var i=0;i<this.connectors.length;i++)
+    this.ctx.clearRect(0,0,this.width,this.height);
+    for(var i=0;i<this.length;i++)
     {
       var connection = this.connectors[i];
 
@@ -173,6 +178,7 @@ $(function(){
     this.setToWindow();
     this.ctx.lineWidth = 3;
     this.connectors = [];
+    this.length = 0;
   }
 
   Canvas.prototype.setWidth = function(input)
@@ -196,6 +202,7 @@ $(function(){
   Canvas.prototype.push = function(id1,id2)
   {
     this.connectors.push([id1,id2]);
+    this.length = this.connectors.length;
   }
 
   Canvas.prototype.indexOf = function(idArr)

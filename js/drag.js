@@ -3,7 +3,6 @@ var newCanvas;
 var lineId = [];
 var selectedObjects = [];
 var uniqueId = 0;
-var globalId = 3;
 
 $(function()
 {
@@ -30,11 +29,8 @@ $(function()
 
   $("#addCard").click(function()
   {
-    // <span class = "test"></span>
-
     var element = $('<div id="'+uniqueId+'" class="draggable"></div>');
     uniqueId++;
-
     element.html(
       '<div class="card">'+
         '<div class = "input-form">'+
@@ -67,6 +63,7 @@ $(function()
 
     //console.log(element.find(".save-card"));
     element.find(".save-card").click(function(){saveInfo(this);});
+    element.find(".edit-card").click(function(){editInfo(this);});
 
   });
 
@@ -78,30 +75,30 @@ $(function()
 
 function saveInfo(id)
 {
-  console.log("test one");
   var parent = $(id).parent().parent();
   var title = parent.find("#input-title").val();
   var note = parent.find("#input-note").val();
-  console.log(title);
-  console.log(note);
+
   parent.find("#output-title").text(title);
   parent.find("#output-note").text(note);
 
-  console.log(parent.find("#card-body"));
   parent.find(".card-body").show();
   parent.find(".input-form").hide();
-
-
-  // $(".card-title").text(inputtedTitle);
-  // $(".card-text").text(inputtedNote);
-  // $(".form").hide();
-  // $(".card-body").show();
 }
 
 function editInfo(id)
 {
-  // $(".form").show();
-  // $(".card-body").hide();
+  var parent = $(id).parent().parent();
+
+
+  var title = parent.find("#output-title").text();
+  var note = parent.find("#output-note").text();
+
+  parent.find("#input-title").val(title);
+  parent.find("#input-note").val(note);
+
+  parent.find(".card-body").hide();
+  parent.find(".input-form").show();
 }
 
 

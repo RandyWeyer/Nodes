@@ -4,6 +4,27 @@ var lineId = [];
 var selectedObjects = [];
 var uniqueId = 0;
 
+const cardHtml = (
+  '<div class="card">'+
+    '<div class = "input-form">'+
+      '<div class="form-group">'+
+        '<label for="input-title">Title</label>'+
+        '<input type="text" class="form-control" id="input-title">'+
+      '</div>'+
+      '<div class="form-group">'+
+        '<label for="input-note">Note:</label>'+
+        '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+      '</div>'+
+      '<button class="btn btn-primary save-card">Save</button>'+
+    '</div>'+
+    '<div class="card-body">'+
+      '<h5 id="output-title">5</h5>'+
+      '<p id="output-note">9</p>'+
+      '<button class="btn btn-primary edit-card">Edit</button>'+
+    '</div>'+
+  '</div>'
+)
+
 $(function()
 {
   $(".draggable").dblclick(function()
@@ -13,45 +34,10 @@ $(function()
 
   $("#add-card").click(function()
   {
-    //create an element
-    var element = $('<div id="'+uniqueId+'" class="draggable"></div>').text('test');
-    uniqueId++;
-    //append it to the DOM
-    $("#input-card").append(element);
-    //make it "draggable"
-    element.draggable({
-      // event handlers
-      start: noop,
-      drag:  connect,
-      stop:  noop
-    }).dblclick(function(){addId(this);});
-  });
-
-  $("#addCard").click(function()
-  {
     var element = $('<div id="'+uniqueId+'" class="draggable"></div>');
     uniqueId++;
-    element.html(
-      '<div class="card">'+
-        '<div class = "input-form">'+
-          '<div class="form-group">'+
-            '<label for="input-title">Title</label>'+
-            '<input type="text" class="form-control" id="input-title">'+
-          '</div>'+
-          '<div class="form-group">'+
-            '<label for="input-note">Note:</label>'+
-            '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
-          '</div>'+
-          '<button class="btn btn-primary save-card">Save</button>'+
-        '</div>'+
-        '<div class="card-body">'+
-          '<h5 id="output-title">5</h5>'+
-          '<p id="output-note">9</p>'+
-          '<button class="btn btn-primary edit-card">Edit</button>'+
-        '</div>'+
-      '</div>'
-    );
-    //append it to the DOM
+    element.html(cardHtml);
+    //append it to input-card
     $("#input-card").append(element);
     //make it "draggable"
     element.draggable({
@@ -61,15 +47,12 @@ $(function()
       stop:  noop
     }).dblclick(function(){addId(this);});
 
-    //console.log(element.find(".save-card"));
+    //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
     element.find(".save-card").click(function(){saveInfo(this);});
     element.find(".edit-card").click(function(){editInfo(this);});
-
   });
-
   newCanvas = new Canvas("canvas");
   connectObjects();
-
 });
 
 
@@ -78,10 +61,8 @@ function saveInfo(id)
   var parent = $(id).parent().parent();
   var title = parent.find("#input-title").val();
   var note = parent.find("#input-note").val();
-
   parent.find("#output-title").text(title);
   parent.find("#output-note").text(note);
-
   parent.find(".card-body").show();
   parent.find(".input-form").hide();
 }
@@ -89,14 +70,10 @@ function saveInfo(id)
 function editInfo(id)
 {
   var parent = $(id).parent().parent();
-
-
   var title = parent.find("#output-title").text();
   var note = parent.find("#output-note").text();
-
   parent.find("#input-title").val(title);
   parent.find("#input-note").val(note);
-
   parent.find(".card-body").hide();
   parent.find(".input-form").show();
 }

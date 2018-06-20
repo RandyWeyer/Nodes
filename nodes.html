@@ -29,36 +29,60 @@
   <!-- End Toolbar -->
   <!-- Start of Modal -->
   <!-- The Save Modal -->
-  <div class="modal" id="myModalSave">
-    <div class="modal-dialog">
-      <div class="modal-content">
+   <div class="modal" id="myModalSave">
+     <div class="modal-dialog">
+       <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Save as...</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+         <!-- Modal Header -->
+         <div class="modal-header">
+           <h4 class="modal-title">Save as...</h4>
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
 
-        <!-- Modal body -->
-        <div class="modal-body">
-          Choose project name:
-          <input type="text" id="projectFileName" placeholder="Enter a name...">
-        </div>
+         <!-- Modal body -->
+         <div class="modal-body">
+           Choose project name:
+           <input type="text" id="projectFileName" placeholder="Enter a name...">
+         </div>
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Modal -->
+         <!-- Modal footer -->
+         <div class="modal-footer">
+             <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
+           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+         </div>
+
+       </div>
+     </div>
+   </div>
+ <!-- End of Save Modal -->
+
+ <!-- The Load Modal -->
+ <div class="modal" id="myModalLoad">
+   <div class="modal-dialog">
+     <div class="modal-content">
+
+       <!-- Modal Header -->
+       <div class="modal-header">
+         <h4 class="modal-title">Load Project</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+
+       <!-- Modal body -->
+       <div class="modal-body">
+         Select a file from your computer:
+         <input type="file" id="loadProjectFileName">
+       </div>
+
+       <!-- Modal footer -->
+       <div class="modal-footer">
+           <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
+         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+       </div>
+
+     </div>
+   </div>
+ </div>
+ <!-- End of Load Modal -->
 
   <!-- color picker -->
   <div>

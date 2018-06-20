@@ -9,11 +9,7 @@
   <script src="js/scripts.js"></script>
   <script src="js/drag.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/saveProject.js"></script>ß
-
-
-  <!-- <script src="js/edit-card.js"></script> -->
-
+  <script src="js/saveProject.js"></script>
   <title>Nodes</title>
 </head>
 <body class="container-fluid">
@@ -26,71 +22,58 @@
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
     <!-- //End Master -->
 
-<!-- ################################################################################ -->
-
-    <!-- color picker -->
-  <div id = "htmll5DIV"> Card Color <span id = hexiColor>____________</span>
-      <input type="color" id="html5colorpicker" value="#ff0000" style="width:85%;">
-
-      <script>
-      function getHexColor(){
-        $("#hexiColor").html("dfsdfsds");
-        var hex = document.getElementById("html5colorpicker").value;
-        console.log(hex);
-        $("#hexiColor").html(hex);
-      }
-      getHexColor();
-
-      </script>
   </div>
+  <!-- Start of Modal -->
+  <!-- The Save Modal -->
+  <div class="modal" id="myModalSave">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-<!-- ################################################################################ -->
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Save as...</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-</div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          Choose project name:
+          <input type="text" id="projectFileName" placeholder="Enter a name...">
+        </div>
 
-
-<!-- The Save Modal -->
-<div class="modal" id="myModalSave">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Save as...</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
       </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  
+  <!-- color picker -->
+  <div>
+    <div class="">
+      <button id="btn-color" class="btn btn-primary" type="button" name="button">Update Color</button>
+    </div>
+    <h5>Card Color: <span id = "current-color">#ff0000</span></h5>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        Choose project name:
-        <input type="text" id="projectFileName" placeholder="Enter a name...">
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
+    <input type="color" id="color-selection" value="#ff0000" style="width:85%;">
+  </div>
 
   <div class="">
     <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Card</button>
   </div>
-
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    <canvas id="canvas" width=300px height=300px></canvas>
-    <div>
-      <span class = "insertDiv"></span>
-    </div>
-    <div id="input-card">
-
-
+  <canvas id="canvas" width=300px height=300px></canvas>
+  <div>
+    <span class = "insertDiv"></span>
   </div>
-</div>
+  <div id="input-card">
+  </div>
 </body>
 </html>

@@ -1,3 +1,9 @@
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  draw();
+}
+
 $(function(){
   var canvas = document.getElementById('canvas');
 
@@ -9,7 +15,7 @@ $(function(){
   var raf;
   var running = false;
   var dragging = false;
-  
+
   function grid() {
     var w = canvas.width,
     h = canvas.height;

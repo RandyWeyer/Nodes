@@ -12,17 +12,21 @@
   <script src="js/saveProject.js"></script>
   <title>Nodes</title>
 </head>
-<body class="container-fluid">
-  <!-- //Master -->
+<canvas id="canvas"></canvas>
+<body class="container-fluid" onresize="resizeCanvas()">
+  <!-- Toolbar -->
   <div class="toolbar">
+    <button id="btn-color" class="btn btn-primary" type="button" name="button">Update Color</button>
+    <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Card</button>
     <!-- Button to Open the Load Modal  -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
 
     <!-- Button to Open the Save Modal -->
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
-    <!-- //End Master -->
+
 
   </div>
+  <!-- End Toolbar -->
   <!-- Start of Modal -->
   <!-- The Save Modal -->
   <div class="modal" id="myModalSave">
@@ -55,21 +59,13 @@
     </div>
   </div>
   <!-- End Modal -->
-  
+
   <!-- color picker -->
   <div>
-    <div class="">
-      <button id="btn-color" class="btn btn-primary" type="button" name="button">Update Color</button>
-    </div>
     <h5>Card Color: <span id = "current-color">#ff0000</span></h5>
-
-    <input type="color" id="color-selection" value="#ff0000" style="width:85%;">
+    <input type="color" id="color-selection" value="#ff0000">
   </div>
 
-  <div class="">
-    <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Card</button>
-  </div>
-  <canvas id="canvas" width=300px height=300px></canvas>
   <div>
     <span class = "insertDiv"></span>
   </div>

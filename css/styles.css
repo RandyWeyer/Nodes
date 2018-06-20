@@ -20,6 +20,7 @@ body
   background-color: #AAA;
   width: 18em;
   z-index: 1 ;
+  position: absolute;
 }
 
 .right

@@ -9,7 +9,9 @@
   <script src="js/scripts.js"></script>
   <script src="js/drag.js"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/saveProject.js"></script>
+  <script src="js/saveProject.js"></script>ß
+
+
   <!-- <script src="js/edit-card.js"></script> -->
 
   <title>Nodes</title>
@@ -23,92 +25,113 @@
     <!-- Button to Open the Save Modal -->
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
     <!-- //End Master -->
+
+<!-- ################################################################################ -->
+
+    <!-- color picker -->
+  <div id = "htmll5DIV"> Card Color <span id = hexiColor>____________</span>
+      <input type="color" id="html5colorpicker" value="#ff0000" style="width:85%;">
+
+      <script>
+      function getHexColor(){
+        $("#hexiColor").html("dfsdfsds");
+        var hex = document.getElementById("html5colorpicker").value;
+        console.log(hex);
+        $("#hexiColor").html(hex);
+      }
+      getHexColor();
+
+      </script>
   </div>
 
+<!-- ################################################################################ -->
 
-  <!-- The Save Modal -->
-  <div class="modal" id="myModalSave">
-    <div class="modal-dialog">
-      <div class="modal-content">
+</div>
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Save as...</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
 
-        <!-- Modal body -->
-        <div class="modal-body">
-          Choose project name:
-          <input type="text" id="projectFileName" placeholder="Enter a name...">
-        </div>
+<!-- The Save Modal -->
+<div class="modal" id="myModalSave">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Save as...</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-    </div>
-  </div>
-  <!-- End of Save Modal -->
 
-  <!-- The Load Modal -->
-  <div class="modal" id="myModalLoad">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Load Project</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          Select a file from your computer:
-          <input type="file" id="loadProjectFileName">
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
+      <!-- Modal body -->
+      <div class="modal-body">
+        Choose project name:
+        <input type="text" id="projectFileName" placeholder="Enter a name...">
       </div>
-    </div>
-  </div>
-  <!-- End of Load Modal -->
 
-  <!-- <canvas id="canvas" width=300px height=300px></canvas> -->
-  <div class="">
-    <button class="btn btn-primary" id="addCard">Add Card</button>
-  </div>
-
-  <!-- <div class="">
-    <button id="btn-submit" class="btn btn-primary"type="submit" name="button">Submit</button>
-  </div> -->
-  <div class="">
-    <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Test</button>
-  </div>
-
-  <div id="node-project">
-
-    <canvas id="canvas" width=300px height=300px></canvas>
-    <div>
-      <span class = "insertDiv"></span>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-
-    <div id="input-card">
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
 
     </div>
   </div>
+</div>
+<!-- End of Save Modal -->
+
+<!-- The Load Modal -->
+<div class="modal" id="myModalLoad">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Load Project</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Select a file from your computer:
+        <input type="file" id="loadProjectFileName">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- End of Load Modal -->
+
+<!-- <canvas id="canvas" width=300px height=300px></canvas> -->
+<div class="">
+  <button class="btn btn-primary" id="addCard">Add Card</button>
+</div>
+
+<!-- <div class="">
+<button id="btn-submit" class="btn btn-primary"type="submit" name="button">Submit</button>
+</div> -->
+<div class="">
+  <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Test</button>
+</div>
+
+<div id="node-project">
+
+  <canvas id="canvas" width=300px height=300px></canvas>
+  <div>
+    <span class = "insertDiv"></span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text </p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+
+  <div id="input-card">
+
+  </div>
+</div>
 </body>
 </html>

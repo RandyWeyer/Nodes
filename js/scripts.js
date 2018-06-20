@@ -10,7 +10,8 @@ function resizeCanvas()
   canvas = document.getElementById("canvas");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  draw();
+  connect();
+  //draw();
 }
 
 $(function()
@@ -18,23 +19,17 @@ $(function()
   canvas = document.getElementById("canvas");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-
   ctx = canvas.getContext("2d");
-
-  //grid();
 
   $("#btn-color").click(function()
   {
     getHexColor();
   });
-
-  //document.getElementById("web-body").addEventListener("resize", resizeCanvas);
-  //$("").resize(resizeCanvas());
 });
 
 function grid() {
-  var w = canvas.width,
-  h = canvas.height;
+  var w = canvas.width;
+  var h = canvas.height;
 
   /**
   * i is used for both x and y to draw

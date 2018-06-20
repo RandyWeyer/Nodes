@@ -7,7 +7,6 @@
   <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/scripts.js"></script>
-  <script src="js/drag.js"></script>
   <script src="js/FileSaver.js"></script>
   <script src="js/saveProject.js"></script>
   <title>Nodes</title>
@@ -16,13 +15,20 @@
 <body id="web-body" class="container-fluid" onresize="resizeCanvas()">
   <!-- Toolbar -->
   <div class="toolbar">
-    <button id="btn-color" class="btn btn-primary" type="button" name="button">Update Color</button>
-    <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Card</button>
-    <!-- Button to Open the Load Modal  -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
+    <div class="">
+      <button id="btn-color" class="btn btn-primary" type="button" name="button">Update Color</button>
+      <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Card</button>
+      <!-- Button to Open the Load Modal  -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
+      <!-- Button to Open the Save Modal -->
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
+    </div>
 
-    <!-- Button to Open the Save Modal -->
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
+    <!-- color picker -->
+    <div>
+      <label for="color-selection">Color:</label>
+      <input type="color" id="color-selection" value="#ff0000">
+    </div>
 
 
   </div>
@@ -84,15 +90,7 @@
  </div>
  <!-- End of Load Modal -->
 
-  <!-- color picker -->
-  <div>
-    <h5>Card Color: <span id = "current-color">#ff0000</span></h5>
-    <input type="color" id="color-selection" value="#ff0000">
-  </div>
 
-  <div>
-    <span class = "insertDiv"></span>
-  </div>
   <div id="input-card">
   </div>
 </body>

@@ -9,24 +9,39 @@ var uniqueId = 0;
 
 const cardHtml = (
   '<div class="card">'+
-  '<div class = "input-form">'+
-  '<div class="form-group">'+
-  '<label for="input-title">Title</label>'+
-  '<input type="text" class="form-control" id="input-title">'+
-  '</div>'+
-  '<div class="form-group">'+
-  '<label for="input-note">Note:</label>'+
-  '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+    '<div class = "input-form">'+
+      '<div class="form-group">'+
+        '<label for="input-title">Title</label>'+
+        '<input type="text" class="form-control" id="input-title">'+
+      '</div>'+
+      '<div class="form-group">'+
+        '<label for="input-note">Note:</label>'+
+        '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+      '</div>'+
+/*****************************BILLYS CODE HERE*******************************/
+
+
+      '<button id="add-image" class="btn btn-primary onclick="addImage()">Add Pic</button>'+
+      '<div id="output-image">'+
+      '</div>'+
+
+/****************************************************************************/
+    '</div>'+
   '</div>'+
   '<button class="btn btn-primary save-card">Save</button>'+
-  '</div>'+
-  '<div class="card-body">'+
+'</div>'+
+'<div class="card-body">'+
   '<h5 id="output-title">5</h5>'+
   '<p id="output-note">9</p>'+
   '<button class="btn btn-primary edit-card">Edit</button>'+
-  '</div>'+
-  '</div>'
-)
+'</div>'
+);
+
+
+
+
+
+
 
 $(function()
 {
@@ -55,6 +70,10 @@ $(function()
     //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
     element.find(".save-card").click(function(){saveInfo(this);});
     element.find(".edit-card").click(function(){editInfo(this);});
+    element.find("#add-image").click(function(){
+      var output = $(this).parent().find("#output-image");
+      addImage(output);
+    });
   });
   newCanvas = new Canvas("canvas");
 
@@ -62,8 +81,16 @@ $(function()
   {
     //getHexColor();
   });
-
 });
+
+
+/*****************************BILLYS CODE HERE*******************************/
+function addImage(id){
+  console.log(id);
+  var src = 'img/dog.png';
+    id.html('<img src='+src+' alt="Some Image" style="width:64px;height:64px;">');
+};
+/****************************************************************************/
 
 function getHexColor(){
   return $("#color-selection").val();
@@ -233,3 +260,15 @@ Canvas.prototype.removeAt = function(location)
     this.connectors.splice(location,location);
   }
 }
+
+// var canvas = document.getElementById('viewport'),
+// context = canvas.getContext('2d');
+
+// make_base();
+//
+// function make_base()
+// {
+//   base_image = new Image();
+//   base_image.src = 'img/base.jpg';
+//   context.drawImage(base_image, 100, 100);
+// }

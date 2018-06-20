@@ -11,6 +11,15 @@ body
   z-index: -1;
 }
 
+.toolbar {
+  padding: 10px;
+  float: right;
+  background-color: #aaa;
+}
+.toolbar>button {
+  margin: 5px;
+}
+
 .draggable
 {
   padding: 15px;

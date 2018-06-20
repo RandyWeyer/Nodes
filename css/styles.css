@@ -33,6 +33,7 @@ body {
   border: solid #EEE 3px;
   border-radius: 8px;
   background-color: #AAA;
+  width: 18em;
 }
 textarea {
   max-width: 15em;

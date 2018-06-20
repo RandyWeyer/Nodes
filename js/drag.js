@@ -36,26 +36,23 @@ $(function()
     uniqueId++;
 
     element.html(
-      '<div class="card" style="width: 18em;">'+
-      // '<form id="editForm">'+
-      '<div class = form>'+
-      '<div class="form-group">'+
-      '<label for="cardTitle">Title</label>'+
-      '<input type="text" class="form-control" id="cardTitle">'+
-      '</div>'+
-      '<div class="form-group">'+
-      '<label for="cardNote">Note:</label>'+
-
-      '<textarea type="text" lines="8" class="form-control" id="cardNote"></textarea>'+
-      '</div>'+
-      '<button class="btn btn-primary save-card">Save</button>'+
-      '</div>'+
-      // '</form>'+
-      '<div class="card-body">'+
-      '<h5 class="card-title"></h5>'+
-      '<p class="card-text"></p>'+
-      '<button class="btn btn-primary edit-card">Edit</button>'+
-      '</div>'+
+      '<div class="card">'+
+        '<div class = "input-form">'+
+          '<div class="form-group">'+
+            '<label for="input-title">Title</label>'+
+            '<input type="text" class="form-control" id="input-title">'+
+          '</div>'+
+          '<div class="form-group">'+
+            '<label for="input-note">Note:</label>'+
+            '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+          '</div>'+
+          '<button class="btn btn-primary save-card">Save</button>'+
+        '</div>'+
+        '<div class="card-body">'+
+          '<h5 id="output-title">5</h5>'+
+          '<p id="output-note">9</p>'+
+          '<button class="btn btn-primary edit-card">Edit</button>'+
+        '</div>'+
       '</div>'
     );
     //append it to the DOM
@@ -67,31 +64,46 @@ $(function()
       drag:  connect,
       stop:  noop
     }).dblclick(function(){addId(this);});
+
+    //console.log(element.find(".save-card"));
+    element.find(".save-card").click(function(){saveInfo(this);});
+
   });
-
-  $(".save-card").click(function(){
-
-    console.log("test one");
-
-    // var inputtedTitle = $("input#cardTitle").val();
-    // var inputtedNote = $("textarea#cardNote").val();
-    // $(".card-title").text(inputtedTitle);
-    // $(".card-text").text(inputtedNote);
-    // $(".form").hide();
-    // $(".card-body").show();
-  });
-
-  $(".edit-card").click(function(){
-    // $(".form").show();
-    // $(".card-body").hide();
-  });
-
-
 
   newCanvas = new Canvas("canvas");
   connectObjects();
 
 });
+
+
+function saveInfo(id)
+{
+  console.log("test one");
+  var parent = $(id).parent().parent();
+  var title = parent.find("#input-title").val();
+  var note = parent.find("#input-note").val();
+  console.log(title);
+  console.log(note);
+  parent.find("#output-title").text(title);
+  parent.find("#output-note").text(note);
+
+  console.log(parent.find("#card-body"));
+  parent.find(".card-body").show();
+  parent.find(".input-form").hide();
+
+
+  // $(".card-title").text(inputtedTitle);
+  // $(".card-text").text(inputtedNote);
+  // $(".form").hide();
+  // $(".card-body").show();
+}
+
+function editInfo(id)
+{
+  // $(".form").show();
+  // $(".card-body").hide();
+}
+
 
 
 function Canvas(canvasID)

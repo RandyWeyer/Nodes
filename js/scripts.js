@@ -9,27 +9,31 @@ var uniqueId = 0;
 
 const cardHtml = (
   '<div class="card">'+
-  '<div class = "input-form">'+
-  '<div class="form-group">'+
-  '<label for="input-title">Title</label>'+
-  '<input type="text" class="form-control" id="input-title">'+
-  '</div>'+
-  '<div class="form-group">'+
-  '<label for="input-note">Note:</label>'+
-  '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+    '<div class = "input-form">'+
+      '<div class="form-group">'+
+        '<label for="input-title">Title</label>'+
+        '<input type="text" class="form-control" id="input-title">'+
+      '</div>'+
+      '<div class="form-group">'+
+        '<label for="input-note">Note:</label>'+
+        '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+      '</div>'+
+      '<button id="add-image" class="btn btn-primary onclick="addImage()">Add Pic</button>'+
+      '<div id="output-image">'+
+      '</div>'+
+    '</div>'+
   '</div>'+
   '<button class="btn btn-primary save-card">Save</button>'+
-  '</div>'+
-  '<div class="card-body">'+
+'</div>'+
+'<div class="card-body">'+
   '<h5 id="output-title">5</h5>'+
   '<p id="output-note">9</p>'+
   '<button class="btn btn-primary edit-card">Edit</button>'+
-  '</div>'+
-  '</div>'
-)
+'</div>'
+);
 
 $(function(){
-
+  newCanvas = new Canvas("canvas");
   //Start Drag
   $(".draggable").dblclick(function()
   {
@@ -44,6 +48,7 @@ $(function(){
     //append it to input-card
     $("#input-card").append(element);
     //make it "draggable"
+
     element.draggable(
       {
         // event handlers
@@ -57,21 +62,57 @@ $(function(){
       //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
       element.find(".save-card").click(function(){saveInfo(this);});
       element.find(".edit-card").click(function(){editInfo(this);});
+      element.find("#add-image").click(function(){
+        var output = $(this).parent().find("#output-image");
+        addImage(output);
+      });
     });
 
-    newCanvas = new Canvas("canvas");
+    
 
-    $("#btn-color").click(function()
+    /*$("#btn-color").click(function()
     {
       //getHexColor();
+    });*/
+
+  //});
+
+  //function resizeCanvas();
+
+
+  $("#btn-color").click(function(event) {
+    event.preventDefault();
+    var hex = $("#color-selection").val();
+    $("#current-color").html(hex);
+
+    $('#input-card').find('div').each(function(){
+        if ($(this).hasClass('card-selected')){
+          $(this).css("background-color", $("#color-selection").val())
+        };
     });
 
   });
+});
 
-  function resizeCanvas()
+function addImage(id){
+  console.log(id);
+  var src = 'img/dog.png';
+    id.html('<img src='+src+' alt="Some Image" style="width:64px;height:64px;">');
+}
+
+/*
+function connect(){
+  newCanvas.ctx.clearRect(0,0,newCanvas.canvas.width,newCanvas.canvas.height);
+  //console.log(newCanvas.connectors[0]);
+  //console.log(newCanvas.offset.top);
+  var topOffset = newCanvas.offset.top;
+  var leftOffset = newCanvas.offset.left;
+  //newCanvas.ctx.translate(0,-60);
+  for(var i=0;i<newCanvas.connectors.length;i++)
   {
     newCanvas.setToWindow();
   }
+  }*/
 
   function getHexColor(){
     return $("#color-selection").val();
@@ -234,3 +275,18 @@ $(function(){
       this.connectors.splice(location,location);
     }
   }
+
+//}
+
+// var canvas = document.getElementById('viewport'),
+// context = canvas.getContext('2d');
+
+// make_base();
+//
+// function make_base()
+// {
+//   base_image = new Image();
+//   base_image.src = 'img/base.jpg';
+//   context.drawImage(base_image, 100, 100);
+// }
+

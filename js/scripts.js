@@ -79,10 +79,20 @@ function loaded(event) {
     arrConnect[index] = arrConnect[index].split(",");
   }
   $("#save-connectors").remove();
-  //console.log(arrConnect);
-  newCanvas.connectors=arrConnect.slice();
-  newCanvas.length = arrConnect.length;
-  newCanvas.connect();
+
+
+  if(arrConnect[0][0] === "")
+  {
+    arrConnect = [];
+  }
+  else
+  {
+    console.log(arrConnect[0][0]);
+    newCanvas.connectors=arrConnect.slice();
+    newCanvas.length = arrConnect.length;
+    newCanvas.connect();
+  }
+
   var notFound = true;
   var tempCounter = 0;
   while(notFound)

@@ -73,7 +73,7 @@ function addEventsToElement(tempElement)
       newCanvas.connect();
     },
     stop:  noop()
-  }).dblclick(function(){addId(element);});
+  }).dblclick(function(){addId(tempElement);});
 
   //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
   tempElement.find(".save-card").click(function(){saveInfo(tempElement);});

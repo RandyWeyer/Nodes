@@ -21,9 +21,16 @@ $(function()
   canvas.height = window.innerHeight;
   ctx = canvas.getContext("2d");
 
-  $("#btn-color").click(function()
-  {
-    getHexColor();
+  $("#btn-color").click(function(event) {
+    event.preventDefault();
+    var hex = $("#color-selection").val();
+    $("#current-color").html(hex);
+
+    $('#input-card').find('div').each(function(){
+        if ($(this).hasClass('card-selected')){
+          $(this).css("background-color", $("#color-selection").val())
+        };
+    });
   });
 });
 

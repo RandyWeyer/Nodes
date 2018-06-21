@@ -13,11 +13,18 @@
   <title>Nodes</title>
 </head>
 <canvas id="canvas"></canvas>
-<body id="web-body" class="container-fluid" onresize="resizeCanvas()">
+<body id="web-body" onresize="resizeCanvas()">
   <!-- Toolbar -->
   <div class="toolbar">
-    <button id="btn-color" class="btn btn-primary" type="button" name="button">Update Color</button>
-    <button id="add-card"class="btn btn-primary"type="submit" name="button">Add Card</button>
+
+    <!-- color picker -->
+    <div>
+      <h5>Card Color: <span id = "current-color">#ff0000</span></h5>
+      <input type="color" id="color-selection" value="#ff0000">
+    </div>
+    <button id="btn-color" class="btn btn-primary" type="button">Update Color</button>
+    <button id="add-card" class="btn btn-primary"ntype="submit">Add Card</button>
+    <br>
     <!-- Button to Open the Load Modal  -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
 
@@ -29,66 +36,61 @@
   <!-- End Toolbar -->
   <!-- Start of Modal -->
   <!-- The Save Modal -->
-   <div class="modal" id="myModalSave">
-     <div class="modal-dialog">
-       <div class="modal-content">
+  <div class="modal" id="myModalSave">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-         <!-- Modal Header -->
-         <div class="modal-header">
-           <h4 class="modal-title">Save as...</h4>
-           <button type="button" class="close" data-dismiss="modal">&times;</button>
-         </div>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Save as...</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-         <!-- Modal body -->
-         <div class="modal-body">
-           Choose project name:
-           <input type="text" id="projectFileName" placeholder="Enter a name...">
-         </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          Choose project name:
+          <input type="text" id="projectFileName" placeholder="Enter a name...">
+        </div>
 
-         <!-- Modal footer -->
-         <div class="modal-footer">
-             <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
-           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-         </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
 
-       </div>
-     </div>
-   </div>
- <!-- End of Save Modal -->
-
- <!-- The Load Modal -->
- <div class="modal" id="myModalLoad">
-   <div class="modal-dialog">
-     <div class="modal-content">
-
-       <!-- Modal Header -->
-       <div class="modal-header">
-         <h4 class="modal-title">Load Project</h4>
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-       </div>
-
-       <!-- Modal body -->
-       <div class="modal-body">
-         Select a file from your computer:
-         <input type="file" id="loadProjectFileName">
-       </div>
-
-       <!-- Modal footer -->
-       <div class="modal-footer">
-           <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
-         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-       </div>
-
-     </div>
-   </div>
- </div>
- <!-- End of Load Modal -->
-
-  <!-- color picker -->
-  <div>
-    <h5>Card Color: <span id = "current-color">#ff0000</span></h5>
-    <input type="color" id="color-selection" value="#ff0000">
+      </div>
+    </div>
   </div>
+  <!-- End of Save Modal -->
+
+  <!-- The Load Modal -->
+  <div class="modal" id="myModalLoad">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Load Project</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          Select a file from your computer:
+          <input type="file" id="loadProjectFileName">
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- End of Load Modal -->
+
 
   <div>
     <span class = "insertDiv"></span>

@@ -8,27 +8,28 @@ var selectedObjects = [];
 var uniqueId = 0;
 
 const cardHtml = (
-  '<div class="card">'+
+  '<div class="card">'  +
   '<div class = "input-form">'+
-  '<div class="form-group">'+
-  '<label for="input-title">Title</label>'+
-  '<input type="text" class="form-control" id="input-title">'+
-  '</div>'+
-  '<div class="form-group">'+
-  '<label for="input-note">Note:</label>'+
-  '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
-  '</div>'+
-  '<button id="add-image" class="btn btn-primary onclick="addImage()">Add Pic</button>'+
-  '<div id="output-image">'+
-  '</div>'+
-  '</div>'+
-  '</div>'+
-  '<button class="btn btn-primary save-card">Save</button>'+
-  '</div>'+
-  '<div class="card-body">'+
-  '<h5 id="output-title">5</h5>'+
-  '<p id="output-note">9</p>'+
-  '<button class="btn btn-primary edit-card">Edit</button>'+
+        '<div class="form-group">'+
+        '<label for="input-title">Title</label>'+
+        '<input type="text" class="form-control" id="input-title">'+
+      '</div>'+
+      '<div class="form-group">'+
+        '<label for="input-note">Note:</label>'+
+        '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+        '</div>'+
+      '<button id="add-image" class="btn btn-primary onclick="addImage()">Add Pic</button>'+
+      '<div id="output-image-1">'+
+      '</div>'+
+      '<button class="btn btn-primary save-card">Save</button>'+
+    '</div>'+
+    '<div class="card-body">'+
+      '<h5 id="output-title">5</h5>'+
+      '<p id="output-note">9</p>'+
+      '<div id="output-image-2">'+
+      '</div>'+
+      '<button class="btn btn-primary edit-card">Edit</button>'+
+    '</div>'+
   '</div>'
 );
 
@@ -45,6 +46,7 @@ $(function(){
     var element = $('<div id="'+uniqueId+'" class="draggable"></div>');
     uniqueId++;
     element.html(cardHtml);
+
     addEventsToElement(element);
 
     $("#input-card").append(element);
@@ -67,7 +69,7 @@ $(function(){
 
 function addEventsToElement(element)
 {
-
+  console.log(element);
   element.draggable(
   {
     // event handlers
@@ -76,20 +78,21 @@ function addEventsToElement(element)
       newCanvas.connect();
     },
     stop:  noop()
-  }).dblclick(function(){addId(this);});
+  }).dblclick(function(){addId(element);});
 
   //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
-  element.find(".save-card").click(function(){saveInfo(this);});
-  element.find(".edit-card").click(function(){editInfo(this);});
+  element.find(".save-card").click(function(){saveInfo(element);});
+  element.find(".edit-card").click(function(){editInfo(element);});
   element.find("#add-image").click(function()
   {
-    var output = $(this).parent().find("#output-image");
+    var output = $(this).parent().find("#output-image-1");
+    addImage(output);
+    output = $(this).parent().find("#output-image-2");
     addImage(output);
   });
 }
 
 function addImage(id){
-  console.log(id);
   var src = 'img/dog.png';
   id.html('<img src='+src+' alt="Some Image" style="width:64px;height:64px;">');
 }
@@ -106,7 +109,7 @@ function resizeCanvas()
 
 function saveInfo(id)
 {
-  var parent = $(id).parent().parent();
+  var parent = $(id);
   var title = parent.find("#input-title").val();
   var note = parent.find("#input-note").val();
   parent.find("#output-title").text(title);
@@ -117,7 +120,7 @@ function saveInfo(id)
 
 function editInfo(id)
 {
-  var parent = $(id).parent().parent();
+  var parent = $(id);
   var title = parent.find("#output-title").text();
   var note = parent.find("#output-note").text();
   parent.find("#input-title").val(title);

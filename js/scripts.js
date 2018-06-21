@@ -83,205 +83,219 @@ function loaded(event) {
   newCanvas.connectors=arrConnect.slice();
   newCanvas.length = arrConnect.length;
   newCanvas.connect();
+  var notFound = true;
+  var tempCounter = 0;
+  while(notFound)
+  {
+    uniqueId = tempCounter;
+    console.log();
+
+    if($("#input-card").find("#"+tempCounter).length===0)
+    {
+      notFound = false;
+    }
+    tempCounter++;
+
+  }
 }
 
 function addEventsToElement(tempElement)
 {
   tempElement.draggable(
-  {
-    // event handlers
-    start: noop(),
-    drag:  function(){
-      newCanvas.connect();
-    },
-    stop:  noop()
-  }).dblclick(function(){addId(tempElement);});
+    {
+      // event handlers
+      start: noop(),
+      drag:  function(){
+        newCanvas.connect();
+      },
+      stop:  noop()
+    }).dblclick(function(){addId(tempElement);});
 
-  //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
+    //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
 
-  tempElement.find(".save-card").click(function(){saveInfo(tempElement);});
-  tempElement.find(".edit-card").click(function(){editInfo(tempElement);});
-  tempElement.find(".remove-card").click(function(){removeInfo(tempElement);});
-  tempElement.find("#add-image").click(function(){addImage(tempElement);});
-}
-
-function addImage(id){
-  var tempImg = $(id).find("#input-url").val();
-  id.find("#output-image-1").html('<img src="'+ tempImg +'" alt="Card Image">');
-  id.find("#output-image-2").html('<img src="'+ tempImg +'" alt="Card Image">');
-}
-
-function getHexColor(){
-  return $("#color-selection").val();
-}
-
-function resizeCanvas()
-{
-  newCanvas.setToWindow();
-  newCanvas.connect();
-}
-
-function saveInfo(id)
-{
-  var parent = $(id);
-  var title = parent.find("#input-title").val();
-  var note = parent.find("#input-note").val();
-  parent.find("#output-title").text(title);
-  parent.find("#output-note").text(note);
-  parent.find(".card-body").show();
-  parent.find(".input-form").hide();
-}
-
-function editInfo(id)
-{
-  var parent = $(id);
-  var title = parent.find("#output-title").text();
-  var note = parent.find("#output-note").text();
-  //console.log(title);
-  parent.find("#input-title").val(title);
-  parent.find("#input-note").val(note);
-  parent.find(".card-body").hide();
-  parent.find(".input-form").show();
-}
-
-function removeInfo(id)
-{
-  id.remove();
-}
-
-
-function noop(){}
-
-function addId(tempId)
-{
-
-  // console.log(tempId);
-  //Get the Id of the object
-  var idName = "#"+$(tempId).attr("id");
-  // console.log($(idName));
-  lineId.push(idName);
-
-  if($(tempId).hasClass("card-selected"))
-  {
-    $(tempId).removeClass("card-selected");
-  }
-  else
-  {
-    $(tempId).addClass("card-selected");
+    tempElement.find(".save-card").click(function(){saveInfo(tempElement);});
+    tempElement.find(".edit-card").click(function(){editInfo(tempElement);});
+    tempElement.find(".remove-card").click(function(){removeInfo(tempElement);});
+    tempElement.find("#add-image").click(function(){addImage(tempElement);});
   }
 
-  if(lineId.length > 1)
+  function addImage(id){
+    var tempImg = $(id).find("#input-url").val();
+    id.find("#output-image-1").html('<img src="'+ tempImg +'" alt="Card Image">');
+    id.find("#output-image-2").html('<img src="'+ tempImg +'" alt="Card Image">');
+  }
+
+  function getHexColor(){
+    return $("#color-selection").val();
+  }
+
+  function resizeCanvas()
   {
-    var reverseArr = lineId.slice();
-    reverseArr.reverse();
-    if(newCanvas.indexOf(lineId)!=-1)
-    {
-      newCanvas.removeAt(newCanvas.indexOf(lineId));
-    }
-    else if(newCanvas.indexOf(reverseArr)!=-1)
-    {
-      newCanvas.removeAt(newCanvas.indexOf(reverseArr));
-    }
-    else if(lineId[0]!=lineId[1])
-    {
-      newCanvas.push(lineId[0],lineId[1]);
-      //console.log("Log: "+newCanvas.connectors)
-    }
-    lineId.forEach(function(line){
-      $(line).removeClass("card-selected");
-    });
-    //console.log(lineId)
-    lineId = [];
+    newCanvas.setToWindow();
     newCanvas.connect();
   }
-}
 
-function Canvas(canvasId)
-{
-  this.canvas = document.getElementById(canvasId);
-  this.offset = $("#"+canvasId).offset();
-  this.ctx = canvas.getContext("2d");
-  this.setToWindow();
-  this.ctx.lineWidth = 3;
-  this.connectors = [];
-  this.length = 0;
-}
-
-Canvas.prototype.connect = function ()
-{
-  this.ctx.clearRect(0,0,this.width,this.height);
-  for(var i=0;i<this.connectors.length;i++)
+  function saveInfo(id)
   {
-    var connection = this.connectors[i];
-    var c={from:$(connection[0]),to:$(connection[1])};
-    var pos1=c.from.offset();
-    var pos2=c.to.offset();
-    var positionOne = [pos1.left+16-this.offset.left,pos1.top+16-this.offset.top];
-    var positionTwo = [pos2.left+16-this.offset.left,pos2.top+16-this.offset.top];
-    this.ctx.beginPath();
-    //moveTo creates a point on cavas
-    this.ctx.moveTo(positionOne[0],positionOne[1]);
-    //creates a line to the new point
-    this.ctx.lineTo(positionTwo[0],positionTwo[1]);
-    //console.log(this.connectors[0])
-    //creates the line
-    this.ctx.stroke();
+    var parent = $(id);
+    var title = parent.find("#input-title").val();
+    var note = parent.find("#input-note").val();
+    parent.find("#output-title").text(title);
+    parent.find("#output-note").text(note);
+    parent.find(".card-body").show();
+    parent.find(".input-form").hide();
   }
-}
 
-Canvas.prototype.setWidth = function(input)
-{
-  this.canvas.width = input;
-  this.width = input;
-}
+  function editInfo(id)
+  {
+    var parent = $(id);
+    var title = parent.find("#output-title").text();
+    var note = parent.find("#output-note").text();
+    //console.log(title);
+    parent.find("#input-title").val(title);
+    parent.find("#input-note").val(note);
+    parent.find(".card-body").hide();
+    parent.find(".input-form").show();
+  }
 
-Canvas.prototype.setHeight = function(input)
-{
-  this.canvas.height = input;
-  this.height = input;
-}
+  function removeInfo(id)
+  {
+    id.remove();
+  }
 
-Canvas.prototype.setToWindow = function()
-{
-  this.setWidth(window.innerWidth);
-  this.setHeight(window.innerHeight);
-}
 
-Canvas.prototype.push = function(id1,id2)
-{
-  this.connectors.push([id1,id2]);
-  this.length = this.connectors.length;
-}
+  function noop(){}
 
-Canvas.prototype.indexOf = function(idArr)
-{
-  var counter = 0;
-  var location = -1;
+  function addId(tempId)
+  {
 
-  this.connectors.forEach(function(connector){
-    if(connector[0]===idArr[0]&&connector[1]===idArr[1])
+    // console.log(tempId);
+    //Get the Id of the object
+    var idName = "#"+$(tempId).attr("id");
+    // console.log($(idName));
+    lineId.push(idName);
+
+    if($(tempId).hasClass("card-selected"))
     {
-      location = counter;
+      $(tempId).removeClass("card-selected");
     }
-    counter++;
-  });
-  return (location);
-}
+    else
+    {
+      $(tempId).addClass("card-selected");
+    }
 
-Canvas.prototype.removeAt = function(location)
-{
-  if(this.connectors.length === 1)
+    if(lineId.length > 1)
+    {
+      var reverseArr = lineId.slice();
+      reverseArr.reverse();
+      if(newCanvas.indexOf(lineId)!=-1)
+      {
+        newCanvas.removeAt(newCanvas.indexOf(lineId));
+      }
+      else if(newCanvas.indexOf(reverseArr)!=-1)
+      {
+        newCanvas.removeAt(newCanvas.indexOf(reverseArr));
+      }
+      else if(lineId[0]!=lineId[1])
+      {
+        newCanvas.push(lineId[0],lineId[1]);
+        //console.log("Log: "+newCanvas.connectors)
+      }
+      lineId.forEach(function(line){
+        $(line).removeClass("card-selected");
+      });
+      //console.log(lineId)
+      lineId = [];
+      newCanvas.connect();
+    }
+  }
+
+  function Canvas(canvasId)
   {
-    this.connectors.pop();
-    this.length = this.connectors.length;
+    this.canvas = document.getElementById(canvasId);
+    this.offset = $("#"+canvasId).offset();
+    this.ctx = canvas.getContext("2d");
+    this.setToWindow();
+    this.ctx.lineWidth = 3;
+    this.connectors = [];
+    this.length = 0;
   }
-  else if (location === 0) {
-    this.connectors.shift();
-    this.length = this.connectors.length;
-  }
-  else if (location > -1)
+
+  Canvas.prototype.connect = function ()
   {
-    this.connectors.splice(location,location);
+    this.ctx.clearRect(0,0,this.width,this.height);
+    for(var i=0;i<this.connectors.length;i++)
+    {
+      var connection = this.connectors[i];
+      var c={from:$(connection[0]),to:$(connection[1])};
+      var pos1=c.from.offset();
+      var pos2=c.to.offset();
+      var positionOne = [pos1.left+16-this.offset.left,pos1.top+16-this.offset.top];
+      var positionTwo = [pos2.left+16-this.offset.left,pos2.top+16-this.offset.top];
+      this.ctx.beginPath();
+      //moveTo creates a point on cavas
+      this.ctx.moveTo(positionOne[0],positionOne[1]);
+      //creates a line to the new point
+      this.ctx.lineTo(positionTwo[0],positionTwo[1]);
+      //console.log(this.connectors[0])
+      //creates the line
+      this.ctx.stroke();
+    }
+  }
+
+  Canvas.prototype.setWidth = function(input)
+  {
+    this.canvas.width = input;
+    this.width = input;
+  }
+
+  Canvas.prototype.setHeight = function(input)
+  {
+    this.canvas.height = input;
+    this.height = input;
+  }
+
+  Canvas.prototype.setToWindow = function()
+  {
+    this.setWidth(window.innerWidth);
+    this.setHeight(window.innerHeight);
+  }
+
+  Canvas.prototype.push = function(id1,id2)
+  {
+    this.connectors.push([id1,id2]);
     this.length = this.connectors.length;
   }
-}
+
+  Canvas.prototype.indexOf = function(idArr)
+  {
+    var counter = 0;
+    var location = -1;
+
+    this.connectors.forEach(function(connector){
+      if(connector[0]===idArr[0]&&connector[1]===idArr[1])
+      {
+        location = counter;
+      }
+      counter++;
+    });
+    return (location);
+  }
+
+  Canvas.prototype.removeAt = function(location)
+  {
+    if(this.connectors.length === 1)
+    {
+      this.connectors.pop();
+      this.length = this.connectors.length;
+    }
+    else if (location === 0) {
+      this.connectors.shift();
+      this.length = this.connectors.length;
+    }
+    else if (location > -1)
+    {
+      this.connectors.splice(location,location);
+      this.length = this.connectors.length;
+    }
+  }

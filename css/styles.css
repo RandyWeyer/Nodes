@@ -32,11 +32,6 @@ body
   position: absolute;
 }
 
-.right
-{
-
-}
-
 .card-selected
 {
   box-shadow: 0em 0em 12px 8px lightgreen;

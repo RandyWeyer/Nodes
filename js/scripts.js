@@ -40,13 +40,17 @@ $(function(){
 
   $("#add-card").click(function()
   {
-    var element = $('<div id="'+uniqueId+'" class="draggable" style="position: absolute;"></div>');
+    var element = $('<div id="'+uniqueId+'" class="draggable"></div>');
+    console.log(element);
     uniqueId++;
     element.html(cardHtml);
+    console.log(element);
 
     addEventsToElement(element);
+    console.log(element);
 
     $("#input-card").append(element);
+    console.log(element);
   });
 
   $("#btn-color").click(function(event)
@@ -82,10 +86,10 @@ function addEventsToElement(element)
   element.find(".edit-card").click(function(){editInfo(element);});
   element.find("#add-image").click(function()
   {
-    var output = $(this).parent().find("#output-image-1");
-    addImage(output);
-    output = $(this).parent().find("#output-image-2");
-    addImage(output);
+    var outputOne = $(this).parent().find("#output-image-1");
+    addImage(outputOne);
+    var outputTwo = $(this).parent().parent().find("#output-image-2");
+    addImage(outputTwo);
   });
 }
 

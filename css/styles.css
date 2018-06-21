@@ -46,10 +46,22 @@ textarea
 {
   max-width: 15em;
 }
+#add-image{
+  margin: 12px auto 10px auto;
+}
 
 .card-body
 {
   display: none;
+}
+
+.card-img {
+  text-align: center;
+  margin: 5px auto 5px auto;
+}
+.card-img>img {
+  max-width: 200px;
+  border-radius: 10%;
 }
 
 #current-color
@@ -88,6 +100,7 @@ textarea
   border-bottom: 3px solid #47c9af;
   font-family: Raleway, sans-serif;
   line-height: 1;
+  overflow: hidden;
 }
 #navBar ul {
   background: #ffffff;
@@ -97,7 +110,6 @@ textarea
 }
 #navBar.align-center > ul {
   font-size: 0;
-  text-align: center;
 }
 #navBar.align-center > ul > li {
   display: inline-block;

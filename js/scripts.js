@@ -106,8 +106,9 @@ function addEventsToElement(tempElement)
 }
 
 function addImage(id){
-  id.find("#output-image-1").html('<img src="img/dog.png" alt="Some Image" style="width:64px;height:64px;">');
-  id.find("#output-image-2").html('<img src="img/dog.png" alt="Some Image" style="width:64px;height:64px;">');
+  var tempImg = $("#input-url").val();
+  id.find("#output-image-1").html('<img src="'+ tempImg +'" alt="Card Image">');
+  id.find("#output-image-2").html('<img src="'+ tempImg +'" alt="Card Image">');
 
 }
 

@@ -100,6 +100,7 @@ textarea
   border-bottom: 3px solid #47c9af;
   font-family: Raleway, sans-serif;
   line-height: 1;
+  overflow: hidden;
 }
 #navBar ul {
   background: #ffffff;
@@ -109,7 +110,6 @@ textarea
 }
 #navBar.align-center > ul {
   font-size: 0;
-  text-align: center;
 }
 #navBar.align-center > ul > li {
   display: inline-block;

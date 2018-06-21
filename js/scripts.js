@@ -3,36 +3,14 @@ var newCanvas;
 var lineId = [];
 var selectedObjects = [];
 var uniqueId = 0;
-
-const cardHtml = (
-  '<div class="card">'  +
-  '<div class = "input-form">'+
-        '<div class="form-group">'+
-        '<label for="input-title">Title</label>'+
-        '<input type="text" class="form-control" id="input-title">'+
-      '</div>'+
-      '<div class="form-group">'+
-        '<label for="input-note">Note:</label>'+
-        '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
-        '</div>'+
-      '<button id="add-image" class="btn btn-primary onclick="addImage()">Add Pic</button>'+
-      '<div id="output-image-1">'+
-      '</div>'+
-      '<button class="btn btn-primary save-card">Save</button>'+
-    '</div>'+
-    '<div class="card-body">'+
-      '<h5 id="output-title">5</h5>'+
-      '<p id="output-note">9</p>'+
-      '<div id="output-image-2">'+
-      '</div>'+
-      '<button class="btn btn-primary edit-card">Edit</button>'+
-      '<button class="btn btn-primary remove-card">Remove</button>'+
-    '</div>'+
-  '</div>'
-);
+var tempCounter = 0;
 
 $(function(){
   newCanvas = new Canvas("canvas");
+
+  $(".openToolbar").click(function(){
+    $(".toolbar").toggle();
+  });
   //Start Drag
   $(".draggable").dblclick(function()
   {
@@ -60,7 +38,6 @@ $(function(){
         $(this).css("background-color", $("#color-selection").val())
       };
     });
-
   });
 });
 
@@ -81,19 +58,13 @@ function addEventsToElement(tempElement)
   tempElement.find(".save-card").click(function(){saveInfo(tempElement);});
   tempElement.find(".edit-card").click(function(){editInfo(tempElement);});
   tempElement.find(".remove-card").click(function(){removeInfo(tempElement);});
-  tempElement.find("#add-image").click(function();
-
-  {
-    var outputOne = $(this).parent().find("#output-image-1");
-    addImage(outputOne);
-    var outputTwo = $(this).parent().parent().find("#output-image-2");
-    addImage(outputTwo);
-  });
+  tempElement.find("#add-image").click(function(){addImage(tempElement);});
 }
 
 function addImage(id){
-  var src = 'img/dog.png';
-  id.html('<img src='+src+' alt="Some Image" style="width:64px;height:64px;">');
+  id.find("#output-image-1").html('<img src="img/dog.png" alt="Some Image" style="width:64px;height:64px;">');
+  id.find("#output-image-2").html('<img src="img/dog.png" alt="Some Image" style="width:64px;height:64px;">');
+
 }
 
 function getHexColor(){

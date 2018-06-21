@@ -106,10 +106,9 @@ function addEventsToElement(tempElement)
 }
 
 function addImage(id){
-  var tempImg = $("#input-url").val();
+  var tempImg = $(id).find("#input-url").val();
   id.find("#output-image-1").html('<img src="'+ tempImg +'" alt="Card Image">');
   id.find("#output-image-2").html('<img src="'+ tempImg +'" alt="Card Image">');
-
 }
 
 function getHexColor(){

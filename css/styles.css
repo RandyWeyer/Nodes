@@ -46,10 +46,22 @@ textarea
 {
   max-width: 15em;
 }
+#add-image{
+  margin: 12px auto 10px auto;
+}
 
 .card-body
 {
   display: none;
+}
+
+.card-img {
+  text-align: center;
+  margin: 5px auto 5px auto;
+}
+.card-img>img {
+  max-width: 200px;
+  border-radius: 10%;
 }
 
 #current-color

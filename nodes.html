@@ -108,16 +108,18 @@
         <label for="input-note">Note:</label>
         <textarea type="text" lines="8" class="form-control" id="input-note"></textarea>
       </div>
+      <label for="input-url">Image URL:</label>
+      <input type="text" id="input-url">
       <button id="add-image" class="btn btn-primary">Add Pic</button>
-      <div id="output-image-1">
+      <div id="output-image-1" class="card-img">
       </div>
       <button class="btn btn-primary save-card">Save</button>
     </div>
     <div class="card-body">
+      <div id="output-image-2" class="card-img">
+      </div>
       <h5 id="output-title"></h5>
       <p id="output-note"></p>
-      <div id="output-image-2">
-      </div>
       <button class="btn btn-primary edit-card">Edit</button>
       <button class="btn btn-primary remove-card">Remove</button>
     </div>

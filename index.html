@@ -5,10 +5,125 @@
   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <script src="js/jquery-3.3.1.js"></script>
+  <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
+  <script src="js/bootstrap.js"></script>
   <script src="js/scripts.js"></script>
+  <script src="js/FileSaver.js"></script>
+  <script src="js/nav-bar.js"></script>
+
   <title>Nodes</title>
 </head>
-<body>
+<canvas id="canvas"></canvas>
+<body id="web-body" onresize="resizeCanvas()">
+  <!-- nav-bar -->
+  <div id="navBar">
+    <ul>
+      <li class ="reloadPage"><a>Home</a></li>
+      <li class ="openToolbar"><a>Toolbar</a></li>
+      <li><a href="mailto:someone@epicodus.com">Contact</a></li>
+      <li><a href=https://github.com/RandyWeyer/Nodes.git>About</a></li>
+    </ul>
+  </div>
+  <!-- nav-bar -->
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button id="add-card" class="btn btn-primary"ntype="submit">Add Card</button>
 
+    <!-- Button to Open the Load Modal  -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
+    <!-- Button to Open the Save Modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
+
+    <button id="btn-color" class="btn btn-primary" type="button">Update Color</button>
+    <label for="color-selection">Color:</label>
+    <input type="color" id="color-selection" value="#ff0000">
+  </div>
+  <!-- End Toolbar -->
+  <!-- Start of Modal -->
+  <!-- The Save Modal -->
+  <div class="modal" id="myModalSave">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Save as...</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          Choose project name:
+          <input type="text" id="projectFileName" placeholder="Enter a name...">
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="save-project">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- End of Save Modal -->
+
+  <!-- The Load Modal -->
+  <div class="modal" id="myModalLoad">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Load Project</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          Select a file from your computer:
+          <input type="file" id="loadProjectFileName">
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="load-project">Load</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Load Modal -->
+
+  <div id="input-card">
+  </div>
 </body>
+<div id="card-default" style="display: none;">
+  <div class="card">
+    <div class = "input-form">
+      <div class="form-group">
+        <label for="input-title">Title</label>
+        <input type="text" class="form-control" id="input-title">
+      </div>
+      <div class="form-group">
+        <label for="input-note">Note:</label>
+        <textarea type="text" lines="8" class="form-control" id="input-note"></textarea>
+      </div>
+      <label for="input-url">Image URL:</label>
+      <input type="text" id="input-url">
+      <button id="add-image" class="btn btn-primary">Add Pic</button>
+      <div id="output-image-1" class="card-img">
+      </div>
+      <button class="btn btn-primary save-card">Save</button>
+    </div>
+    <div class="card-body">
+      <div id="output-image-2" class="card-img">
+      </div>
+      <h5 id="output-title"></h5>
+      <p id="output-note"></p>
+      <button class="btn btn-primary edit-card">Edit</button>
+      <button class="btn btn-primary remove-card">Remove</button>
+    </div>
+  </div>
+</div>
 </html>

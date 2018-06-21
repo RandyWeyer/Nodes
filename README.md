@@ -8,13 +8,30 @@
   * Steven Colburn
   * Matt Staudacher  
 
-## GitGHub Repository
+## GitHub Repository
 
-  * https://github.com/RandyWeyer/Nodes.git
-
-## About
+  Directions:
+  * git clone https://github.com/RandyWeyer/Nodes.git
+  * open index.html
 
 ## Specifications
+
+  * Create Cards
+    * Draggable
+    * Has a title and description
+    * Optional url for image
+    * Change color
+    * Removable
+  * Lines can connect Cards
+  * Save Cards and Lines
+  * Resize canvas based on window size
+  * toolbar
+    * Home
+    * Save
+    * Load
+    * Contact
+    * About
+      * Go to GitHub Repository
 
 ## License Information
 

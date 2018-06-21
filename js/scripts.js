@@ -4,6 +4,33 @@ var lineId = [];
 var selectedObjects = [];
 var uniqueId = 0;
 
+const cardHtml = (
+  '<div class="card">'  +
+  '<div class = "input-form">'+
+        '<div class="form-group">'+
+        '<label for="input-title">Title</label>'+
+        '<input type="text" class="form-control" id="input-title">'+
+      '</div>'+
+      '<div class="form-group">'+
+        '<label for="input-note">Note:</label>'+
+        '<textarea type="text" lines="8" class="form-control" id="input-note"></textarea>'+
+        '</div>'+
+      '<button id="add-image" class="btn btn-primary onclick="addImage()">Add Pic</button>'+
+      '<div id="output-image-1">'+
+      '</div>'+
+      '<button class="btn btn-primary save-card">Save</button>'+
+    '</div>'+
+    '<div class="card-body">'+
+      '<h5 id="output-title">5</h5>'+
+      '<p id="output-note">9</p>'+
+      '<div id="output-image-2">'+
+      '</div>'+
+      '<button class="btn btn-primary edit-card">Edit</button>'+
+      '<button class="btn btn-primary remove-card">Remove</button>'+
+    '</div>'+
+  '</div>'
+);
+
 $(function(){
   newCanvas = new Canvas("canvas");
   //Start Drag
@@ -50,9 +77,12 @@ function addEventsToElement(tempElement)
   }).dblclick(function(){addId(tempElement);});
 
   //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
+
   tempElement.find(".save-card").click(function(){saveInfo(tempElement);});
   tempElement.find(".edit-card").click(function(){editInfo(tempElement);});
-  tempElement.find("#add-image").click(function()
+  tempElement.find(".remove-card").click(function(){removeInfo(tempElement);});
+  tempElement.find("#add-image").click(function();
+
   {
     var outputOne = $(this).parent().find("#output-image-1");
     addImage(outputOne);
@@ -98,6 +128,12 @@ function editInfo(id)
   parent.find(".card-body").hide();
   parent.find(".input-form").show();
 }
+
+function removeInfo(id)
+{
+  id.remove();
+}
+
 
 function noop(){}
 

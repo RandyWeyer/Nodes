@@ -29,6 +29,7 @@ const cardHtml = (
       '<div id="output-image-2">'+
       '</div>'+
       '<button class="btn btn-primary edit-card">Edit</button>'+
+      '<button class="btn btn-primary remove-card">Remove</button>'+
     '</div>'+
   '</div>'
 );
@@ -43,7 +44,7 @@ $(function(){
 
   $("#add-card").click(function()
   {
-    var element = $('<div id="'+uniqueId+'" class="draggable"></div>');
+    var element = $('<div id="'+uniqueId+'" class="draggable" style="position: absolute;"></div>');
     uniqueId++;
     element.html(cardHtml);
 
@@ -83,6 +84,7 @@ function addEventsToElement(element)
   //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
   element.find(".save-card").click(function(){saveInfo(element);});
   element.find(".edit-card").click(function(){editInfo(element);});
+  element.find(".remove-card").click(function(){removeInfo(element);});
   element.find("#add-image").click(function()
   {
     var output = $(this).parent().find("#output-image-1");
@@ -128,6 +130,12 @@ function editInfo(id)
   parent.find(".card-body").hide();
   parent.find(".input-form").show();
 }
+
+function removeInfo(id)
+{
+  id.remove();
+}
+
 
 function noop(){}
 

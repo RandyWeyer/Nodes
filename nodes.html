@@ -10,28 +10,45 @@
   <script src="js/scripts.js"></script>
   <script src="js/FileSaver.js"></script>
   <script src="js/saveProject.js"></script>
+  <script src="js/nav-bar.js"></script>
 
   <title>Nodes</title>
-</head>
+
+
+
+
 <canvas id="canvas"></canvas>
 <body id="web-body" onresize="resizeCanvas()">
+  <!-- nav-bar -->
+<div id="navBar">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li class ="openToolbar"><a>Toolbar</a></li>
+    <li><a href="mailto:someone@epicodus.com">Contact</a></li>
+    <li style="float:right"><a href=https://github.com/RandyWeyer/Nodes.git>About</a></li>
+  </ul>
+  </div>
+  <!-- nav-bar -->
+
+
+
   <!-- Toolbar -->
   <div class="toolbar">
-    <div class="">
-      <button id="btn-color" class="btn btn-primary" type="button">Update Color</button>
-      <button id="add-card" class="btn btn-primary"ntype="submit">Add Card</button>
-    </div>
-    <div class="">
-      <!-- Button to Open the Load Modal  -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
-      <!-- Button to Open the Save Modal -->
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
-    </div>
-    <div>
-      <label for="color-selection">Color:</label>
-      <input type="color" id="color-selection" value="#ff0000">
-    </div>
-</div>
+
+
+   <button id="add-card" class="btn btn-primary"ntype="submit">Add Card</button>
+
+   <!-- Button to Open the Load Modal  -->
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalLoad">Load</button>
+   <!-- Button to Open the Save Modal -->
+   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalSave">Save</button>
+
+   <button id="btn-color" class="btn btn-primary" type="button">Update Color</button>
+   <label for="color-selection">Color:</label>
+   <input type="color" id="color-selection" value="#ff0000">
+
+ </div>
+
 <!-- End Toolbar -->
 <!-- Start of Modal -->
 <!-- The Save Modal -->

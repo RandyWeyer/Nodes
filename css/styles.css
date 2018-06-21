@@ -17,8 +17,9 @@ body
   background-color: #aaa;
   display: none;
 }
+
 .toolbar>button {
-  margin: 5px;
+  margin: 10px;
 }
 
 .draggable
@@ -30,11 +31,6 @@ body
   width: 18em;
   z-index: 1 ;
   position: absolute;
-}
-
-.right
-{
-
 }
 
 .card-selected

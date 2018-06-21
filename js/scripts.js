@@ -1,6 +1,3 @@
-var running = false;
-var dragging = false;
-
 //https://stackoverflow.com/questions/21864989/draw-lines-between-2-elements-in-html-page
 var newCanvas;
 var lineId = [];
@@ -44,13 +41,12 @@ $(function(){
 
   $("#add-card").click(function()
   {
-    var element = $('<div id="'+uniqueId+'" class="draggable" style="position: absolute;"></div>');
+    //Requires style position absolution reason:unkown glich (possibly jquery)
+    var createDivWrap = $('<div id="'+uniqueId+'" class="draggable" style="position: absolute;"></div>');
     uniqueId++;
-    element.html(cardHtml);
-
-    addEventsToElement(element);
-
-    $("#input-card").append(element);
+    createDivWrap.html($("#card-default").html());
+    addEventsToElement(createDivWrap);
+    $("#input-card").append(createDivWrap);
   });
 
   $("#btn-color").click(function(event)
@@ -68,10 +64,9 @@ $(function(){
   });
 });
 
-function addEventsToElement(element)
+function addEventsToElement(tempElement)
 {
-  console.log(element);
-  element.draggable(
+  tempElement.draggable(
   {
     // event handlers
     start: noop(),
@@ -79,18 +74,20 @@ function addEventsToElement(element)
       newCanvas.connect();
     },
     stop:  noop()
-  }).dblclick(function(){addId(element);});
+  }).dblclick(function(){addId(tempElement);});
 
   //Add Click events to buttons save-card and edit-card in the card using DOM Traversal
-  element.find(".save-card").click(function(){saveInfo(element);});
-  element.find(".edit-card").click(function(){editInfo(element);});
-  element.find(".remove-card").click(function(){removeInfo(element);});
-  element.find("#add-image").click(function()
+
+  tempElement.find(".save-card").click(function(){saveInfo(tempElement);});
+  tempElement.find(".edit-card").click(function(){editInfo(tempElement);});
+  tempElement.find(".remove-card").click(function(){removeInfo(tempElement);});
+  tempElement.find("#add-image").click(function();
+
   {
-    var output = $(this).parent().find("#output-image-1");
-    addImage(output);
-    output = $(this).parent().find("#output-image-2");
-    addImage(output);
+    var outputOne = $(this).parent().find("#output-image-1");
+    addImage(outputOne);
+    var outputTwo = $(this).parent().parent().find("#output-image-2");
+    addImage(outputTwo);
   });
 }
 
@@ -125,6 +122,7 @@ function editInfo(id)
   var parent = $(id);
   var title = parent.find("#output-title").text();
   var note = parent.find("#output-note").text();
+  console.log(title);
   parent.find("#input-title").val(title);
   parent.find("#input-note").val(note);
   parent.find(".card-body").hide();

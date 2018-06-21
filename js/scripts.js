@@ -3,18 +3,12 @@ var newCanvas;
 var lineId = [];
 var selectedObjects = [];
 var uniqueId = 0;
-var tempCounter = 0;
 
 $(function(){
   newCanvas = new Canvas("canvas");
 
   $(".openToolbar").click(function(){
     $(".toolbar").toggle();
-  });
-  //Start Drag
-  $(".draggable").dblclick(function()
-  {
-    addId(this);
   });
 
   $("#add-card").click(function()
@@ -39,7 +33,57 @@ $(function(){
       };
     });
   });
+
+  $("#save-project").click(function(event)
+  {
+    event.preventDefault();
+    var text = $("#input-card").html();
+    var filename = $("#projectFileName").val()
+    var linesArray = newCanvas.connectors.join("-");
+    var stringLines = '<div id="save-connectors" style="display: none;">'+linesArray+'</div>';
+    console.log(stringLines);
+    var blob = new Blob([text,stringLines], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, filename + ".txt");
+  });
+
+  $("#load-project").click(function(event)
+  {
+    event.preventDefault();
+    var file = document.getElementById('loadProjectFileName').files[0];
+    if (file)
+    {
+      getAsText(file);
+    }
+    event.stopPropagation();
+  });
 });
+
+function getAsText(readFile)
+{
+  var reader = new FileReader();
+  reader.readAsText(readFile, "UTF-8");
+  reader.onload = loaded;
+}
+
+function loaded(event) {
+  // console.log(event.target.result);
+  var fileString = event.target.result;
+  $("#input-card").html(fileString);
+  $(".draggable").each(function(element)
+  {
+    addEventsToElement($(this));
+  });
+  var arrConnect = $("#save-connectors").text().split("-").slice();
+  for(var index = 0; index < arrConnect.length; index++)
+  {
+    arrConnect[index] = arrConnect[index].split(",");
+  }
+  $("#save-connectors").remove();
+  console.log(arrConnect);
+  newCanvas.connectors=arrConnect.slice();
+  newCanvas.length = arrConnect.length;
+  newCanvas.connect();
+}
 
 function addEventsToElement(tempElement)
 {
@@ -93,7 +137,7 @@ function editInfo(id)
   var parent = $(id);
   var title = parent.find("#output-title").text();
   var note = parent.find("#output-note").text();
-  console.log(title);
+  //console.log(title);
   parent.find("#input-title").val(title);
   parent.find("#input-note").val(note);
   parent.find(".card-body").hide();
@@ -107,6 +151,60 @@ function removeInfo(id)
 
 
 function noop(){}
+
+function addId(tempId)
+{
+
+  // console.log(tempId);
+  //Get the Id of the object
+  var idName = "#"+$(tempId).attr("id");
+  // console.log($(idName));
+  lineId.push(idName);
+
+  if($(tempId).hasClass("card-selected"))
+  {
+    $(tempId).removeClass("card-selected");
+  }
+  else
+  {
+    $(tempId).addClass("card-selected");
+  }
+
+  if(lineId.length > 1)
+  {
+    var reverseArr = lineId.slice();
+    reverseArr.reverse();
+    if(newCanvas.indexOf(lineId)!=-1)
+    {
+      newCanvas.removeAt(newCanvas.indexOf(lineId));
+    }
+    else if(newCanvas.indexOf(reverseArr)!=-1)
+    {
+      newCanvas.removeAt(newCanvas.indexOf(reverseArr));
+    }
+    else if(lineId[0]!=lineId[1])
+    {
+      newCanvas.push(lineId[0],lineId[1]);
+    }
+    lineId.forEach(function(line){
+      $(line).removeClass("card-selected");
+    });
+    console.log(lineId)
+    lineId = [];
+    newCanvas.connect();
+  }
+}
+
+function Canvas(canvasId)
+{
+  this.canvas = document.getElementById(canvasId);
+  this.offset = $("#"+canvasId).offset();
+  this.ctx = canvas.getContext("2d");
+  this.setToWindow();
+  this.ctx.lineWidth = 3;
+  this.connectors = [];
+  this.length = 0;
+}
 
 Canvas.prototype.connect = function ()
 {
@@ -129,56 +227,6 @@ Canvas.prototype.connect = function ()
     //creates the line
     this.ctx.stroke();
   }
-}
-
-function addId(tempId)
-{
-  lineId.push(tempId);
-
-  if($(tempId).hasClass("card-selected"))
-  {
-    $(tempId).removeClass("card-selected");
-  }
-  else
-  {
-    $(tempId).addClass("card-selected");
-  }
-
-  if(lineId.length > 1)
-  {
-    //console.log(lineId);
-    var reverseArr = lineId.slice();
-    reverseArr.reverse();
-    if(newCanvas.indexOf(lineId)!=-1)
-    {
-      newCanvas.removeAt(newCanvas.indexOf(lineId));
-    }
-    else if(newCanvas.indexOf(reverseArr)!=-1)
-    {
-      newCanvas.removeAt(newCanvas.indexOf(reverseArr));
-    }
-    else if(lineId[0]!=lineId[1])
-    {
-      newCanvas.push(lineId[0],lineId[1]);
-    }
-    lineId.forEach(function(line){
-      $(line).removeClass("card-selected");
-    });
-
-    lineId = [];
-    newCanvas.connect();
-  }
-}
-
-function Canvas(canvasId)
-{
-  this.canvas = document.getElementById(canvasId);
-  this.offset = $("#"+canvasId).offset();
-  this.ctx = canvas.getContext("2d");
-  this.setToWindow();
-  this.ctx.lineWidth = 3;
-  this.connectors = [];
-  this.length = 0;
 }
 
 Canvas.prototype.setWidth = function(input)

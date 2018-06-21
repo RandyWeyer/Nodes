@@ -16,8 +16,9 @@ body
   float: right;
   background-color: #aaa;
 }
+
 .toolbar>button {
-  margin: 5px;
+  margin: 10px;
 }
 
 .draggable

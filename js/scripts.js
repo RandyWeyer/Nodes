@@ -1,6 +1,3 @@
-var running = false;
-var dragging = false;
-
 //https://stackoverflow.com/questions/21864989/draw-lines-between-2-elements-in-html-page
 var newCanvas;
 var lineId = [];
@@ -43,7 +40,7 @@ $(function(){
 
   $("#add-card").click(function()
   {
-    var element = $('<div id="'+uniqueId+'" class="draggable"></div>');
+    var element = $('<div id="'+uniqueId+'" class="draggable" style="position: absolute;"></div>');
     uniqueId++;
     element.html(cardHtml);
 
